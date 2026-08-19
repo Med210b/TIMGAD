@@ -15,7 +15,11 @@ export const COMPANY_INFO = {
 
 export const NAVIGATION: NavItem[] = [
   { name: 'Home', path: '/' },
-  { name: 'About Us', path: '/about' },
+  {
+    name: 'About Us',
+    path: '/about',
+    children: [{ name: "Founding CEO's Message", path: '/about/ceo' }]
+  },
   { name: 'Services', path: '/services' },
   { name: 'Blogs', path: '/blogs' },
   { name: 'Contact Us', path: '/contact' }

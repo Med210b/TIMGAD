@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { COMPANY_INFO, NAVIGATION } from '../data/company';
 import { cn } from '../lib/utils';
 import Magnetic from './Magnetic';
@@ -57,20 +57,42 @@ const Navbar: React.FC = () => {
         {/* Center Navigation */}
         <div className="hidden lg:flex flex-[2] justify-center items-center space-x-8">
           {NAVIGATION.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={cn(
-                "nav-link transition-all duration-500",
-                location.pathname === item.path ? "text-gold" : ""
+            <div key={item.path} className={cn("relative group", item.children ? "flex items-center" : "")}>
+              <Link
+                to={item.path}
+                className={cn(
+                  "nav-link transition-all duration-500",
+                  location.pathname === item.path || item.children?.some((child) => location.pathname === child.path) ? "text-gold" : ""
+                )}
+              >
+                {item.name}
+                <span className={cn(
+                  "absolute -bottom-1 left-0 h-[1px] bg-gold transition-all duration-500",
+                  location.pathname === item.path || item.children?.some((child) => location.pathname === child.path) ? "w-full" : "w-0 group-hover:w-full"
+                )} />
+              </Link>
+              {item.children && (
+                <>
+                  <ChevronDown size={14} className="ml-1 text-gold/70" />
+                  <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+                    <div className="border border-white/10 bg-black/95 p-2 shadow-2xl backdrop-blur-xl">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.path}
+                          to={child.path}
+                          className={cn(
+                            "block px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] transition-colors hover:bg-white/5 hover:text-gold",
+                            location.pathname === child.path ? "text-gold" : "text-white"
+                          )}
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
-            >
-              {item.name}
-              <span className={cn(
-                "absolute -bottom-1 left-0 h-[1px] bg-gold transition-all duration-500",
-                location.pathname === item.path ? "w-full" : "w-0 group-hover:w-full"
-              )} />
-            </Link>
+            </div>
           ))}
         </div>
 
@@ -113,9 +135,7 @@ const Navbar: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <motion.div
-                    whileTap={{ scale: 0.95 }}
-                  >
+                  <motion.div whileTap={{ scale: 0.95 }}>
                     <Link
                       to={item.path}
                       className={cn(
@@ -126,6 +146,22 @@ const Navbar: React.FC = () => {
                       {item.name}
                       <div className="w-8 h-[1px] bg-gold/50" />
                     </Link>
+                    {item.children && (
+                      <div className="mt-4 ml-4 flex flex-col gap-3 border-l border-gold/30 pl-4">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.path}
+                            to={child.path}
+                            className={cn(
+                              "text-sm font-bold uppercase tracking-[0.16em] transition-colors",
+                              location.pathname === child.path ? "text-gold" : "text-white/70 hover:text-gold"
+                            )}
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 </motion.div>
               ))}
