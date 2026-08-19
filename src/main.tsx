@@ -4,6 +4,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import './index.css';
 
+// This site deliberately opens every route at its beginning. Disable the
+// browser's saved-position restoration before React and Lenis initialise.
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
+window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
