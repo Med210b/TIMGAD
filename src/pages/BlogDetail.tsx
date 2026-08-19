@@ -89,7 +89,7 @@ const BlogDetail: React.FC = () => {
                 </p>
                 
                 {/* Main Article Text */}
-                <div className="text-[#233d00] text-lg leading-relaxed space-y-8 font-light">
+                <div className="text-[#233d00] [&>p]:text-[#233d00] text-lg leading-relaxed space-y-8 font-light">
                   
                   <p>
                     Doing business in the United Arab Emirates requires a deep understanding of local laws, regulatory frameworks, and government procedures. As the business landscape continues to evolve with new initiatives like Corporate Tax and updated Labour Laws, staying compliant has never been more critical.
