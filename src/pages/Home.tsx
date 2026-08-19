@@ -61,8 +61,8 @@ const Home: React.FC = () => {
             </div>
 
             <blockquote className="relative">
-              <span aria-hidden="true" className="absolute -left-1 -top-12 font-serif-heading text-[110px] leading-none text-[#d8b15a] opacity-90 [text-shadow:0_4px_18px_rgba(200,155,60,0.35)] sm:-left-5 sm:text-[136px] lg:-left-10 lg:-top-16">&ldquo;</span>
-              <p className="relative font-serif-heading text-[clamp(2.35rem,4.15vw,4rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#f3efe7]">
+              <span aria-hidden="true" className="absolute -left-4 -top-8 font-serif-heading text-[82px] leading-none text-[#d8b15a] opacity-90 [text-shadow:0_4px_18px_rgba(200,155,60,0.35)] sm:-left-8 sm:text-[100px] lg:-left-14 lg:-top-8 lg:text-[110px]">&ldquo;</span>
+              <p className="relative font-serif-heading text-[clamp(2rem,3.4vw,3.3rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#f3efe7]">
                 Management is<br />
                 doing things right;<br />
                 leadership is doing<br />
