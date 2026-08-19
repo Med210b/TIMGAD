@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-bg: #0D0F10;
+  --color-secondary-bg: #151718;
+  --color-card-bg: #151718;
+  --color-ivory: #F3EFE7;
+  --color-beige: #E9E2D5;
+  --color-gold: #C99A32;
+  --color-gold-bright: #E0B84F;
+  --color-gold-muted: rgba(201, 154, 50, 0.4);
+  --color-gold-glow: rgba(201, 154, 50, 0.2);
+  --color-dark-text: #171717;
+  --color-muted-text: #66615A;
+  
+  --font-serif-heading: "TeX Gyre Termes", "Times New Roman", serif;
+  --font-serif-body: "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    @apply bg-primary-bg text-white font-serif-body antialiased overflow-x-hidden selection:bg-gold selection:text-primary-bg text-[15px] md:text-base;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 9999;
+    filter: grayscale(1);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif-heading font-bold tracking-tight leading-[1.1] uppercase;
+  }
+
+  p {
+    @apply leading-relaxed text-gray-300 font-normal;
+  }
+}
+
+@layer components {
+  .gold-gradient {
+    @apply bg-gradient-to-r from-gold via-gold-bright to-gold bg-clip-text text-transparent;
+  }
+  
+  .glass-card {
+    @apply bg-card-bg border border-white/5 backdrop-blur-xl rounded-xl transition-all duration-500 shadow-xl;
+  }
+  
+  .btn-gold {
+    @apply px-10 py-4 bg-gold text-primary-bg font-bold rounded-sm hover:bg-gold-bright transition-all duration-400 uppercase tracking-[0.2em] text-[11px] shadow-lg shadow-gold/5;
+  }
+  
+  .btn-outline {
+    @apply px-10 py-4 border border-gold/40 text-gold font-bold rounded-sm hover:bg-gold hover:text-primary-bg transition-all duration-400 uppercase tracking-[0.2em] text-[11px];
+  }
+
+  .h-hero {
+    @apply text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tight leading-[1.1] uppercase;
+  }
+
+  .h-section {
+    @apply text-[clamp(1.75rem,4.5vw,2.75rem)] font-bold tracking-tight leading-[1.2] uppercase;
+  }
+
+  .h-display {
+    @apply text-[clamp(1.5rem,3.5vw,2.25rem)] font-bold tracking-tight leading-[1.2] uppercase;
+  }
+
+  .eyebrow {
+    @apply text-[10px] md:text-[11px] font-bold tracking-[0.5em] uppercase text-gold opacity-80;
+  }
+
+  .p-main {
+    @apply text-[15px] md:text-base lg:text-[17px] leading-relaxed text-gray-400 font-normal max-w-3xl;
+  }
+
+  .nav-link {
+    @apply relative text-gray-500 hover:text-gold transition-colors duration-400 font-bold tracking-[0.3em] text-[10px] md:text-[11px] uppercase;
+  }
+
+  /* Section Spacing System */
+  .section-py {
+    @apply py-20 md:py-32;
+  }
+
+  .section-gap {
+    @apply space-y-12 md:space-y-16;
+  }
+
+  /* Premium Dividers */
+  .divider-subtle {
+    @apply w-full h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0F10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C99A32;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E0B84F;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}

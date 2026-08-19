@@ -1,0 +1,6 @@
+{
+  "name": "TIMGAD Government Transaction Services",
+  "description": "Premium 3D/WebGL business and government services portal for the UAE, specializing in PRO, company formation, and professional consultancy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
