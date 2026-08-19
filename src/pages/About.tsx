@@ -44,7 +44,7 @@ const About: React.FC = () => {
           className="absolute inset-0 z-0"
         >
           <img 
-            src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787087632/home_1_icdnmq.png" 
+            src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787164517/746c1e54-774a-422c-8156-4ed985ab4376_sqddsj.png" 
             alt="Dubai Skyline" 
             className="w-full h-full object-cover opacity-40 brightness-75"
           />
