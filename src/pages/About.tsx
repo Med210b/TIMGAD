@@ -118,7 +118,7 @@ const About: React.FC = () => {
                   className="relative rounded-sm overflow-hidden shadow-2xl border border-black/5"
                 >
                   <img 
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" 
+                    src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787165082/bcdaba86-4d80-4845-b7e4-206080b1734c_ecqulo.png" 
                     alt="Corporate Headquarters" 
                     className="w-full h-[500px] object-cover scale-105"
                   />
