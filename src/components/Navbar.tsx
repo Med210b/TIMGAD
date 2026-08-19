@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { COMPANY_INFO, NAVIGATION } from '../data/company';
 import { cn } from '../lib/utils';
 import Magnetic from './Magnetic';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,7 +105,8 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop CTA - Right aligned */}
-        <div className="hidden lg:flex flex-1 justify-end items-center">
+        <div className="hidden lg:flex flex-1 justify-end items-center gap-4">
+          <LanguageSwitcher />
           <Magnetic strength={0.2}>
             <motion.div whileTap={{ scale: 0.95 }}>
               <Link to="/get-a-quote" className="btn-gold !px-6 !py-3">
@@ -184,6 +186,15 @@ const Navbar: React.FC = () => {
                 transition={{ delay: NAVIGATION.length * 0.1 }}
                 whileTap={{ scale: 0.98 }}
                 className="pt-10"
+              >
+                <LanguageSwitcher mobile />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (NAVIGATION.length + 1) * 0.1 }}
+                whileTap={{ scale: 0.98 }}
+                className="pt-2"
               >
                 <Link to="/get-a-quote" className="btn-gold w-full text-center block py-5 text-sm font-black uppercase tracking-[0.2em] rounded-sm shadow-xl shadow-gold/10">
                   Get a Quote

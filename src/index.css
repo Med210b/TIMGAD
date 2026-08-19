@@ -106,6 +106,48 @@
     @apply relative text-gray-500 hover:text-gold transition-colors duration-400 font-bold tracking-[0.3em] text-[10px] md:text-[11px] uppercase;
   }
 
+  /* Keep Google's translator functional while exposing only the TIMGAD control. */
+  #google_translate_element {
+    position: fixed;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .goog-te-banner-frame.skiptranslate,
+  body > .skiptranslate {
+    display: none !important;
+  }
+
+  body {
+    top: 0 !important;
+  }
+
+  .goog-te-gadget {
+    font-size: 0 !important;
+  }
+
+  .goog-te-gadget .goog-te-combo {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  html[dir="rtl"] body {
+    direction: rtl;
+  }
+
+  html[dir="rtl"] input,
+  html[dir="rtl"] select,
+  html[dir="rtl"] textarea {
+    text-align: right;
+  }
+
   /* Section Spacing System */
   .section-py {
     @apply py-20 md:py-32;

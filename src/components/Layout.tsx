@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import BackgroundElements from './BackgroundElements';
 import { cn } from '../lib/utils';
+import { GoogleTranslateBridge } from './LanguageSwitcher';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <BackgroundElements />
+      <GoogleTranslateBridge pathname={pathname} />
       <Navbar />
 
       <main
