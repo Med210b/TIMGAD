@@ -30,6 +30,13 @@ const Navbar: React.FC = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <nav 
       className={cn(
@@ -112,6 +119,9 @@ const Navbar: React.FC = () => {
           whileTap={{ scale: 0.9 }}
           className="lg:hidden text-gold p-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
@@ -125,6 +135,9 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            id="mobile-navigation"
+            role="dialog"
+            aria-label="Mobile navigation"
             className="fixed inset-0 z-40 bg-black flex flex-col lg:hidden pt-24 px-6"
           >
             <div className="flex flex-col space-y-8 mt-10">

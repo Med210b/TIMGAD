@@ -48,7 +48,7 @@ const GetQuote: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-40 border-b border-black/5 bg-ivory">
+      <section className="py-40 border-b border-black/5 bg-ivory overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-col lg:flex-row gap-32 items-start">
             {/* Form */}
@@ -62,8 +62,9 @@ const GetQuote: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Full Name</label>
+                    <label htmlFor="quote-full-name" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Full Name</label>
                     <input 
+                      id="quote-full-name"
                       type="text" 
                       required
                       placeholder="Enter your full name"
@@ -72,8 +73,9 @@ const GetQuote: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Company Name</label>
+                    <label htmlFor="quote-company-name" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Company Name</label>
                     <input 
+                      id="quote-company-name"
                       type="text" 
                       placeholder="Your company name (optional)"
                       className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium"
@@ -84,8 +86,9 @@ const GetQuote: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Email Address</label>
+                    <label htmlFor="quote-email" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Email Address</label>
                     <input 
+                      id="quote-email"
                       type="email" 
                       required
                       placeholder="email@example.com"
@@ -94,8 +97,9 @@ const GetQuote: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Phone Number</label>
+                    <label htmlFor="quote-phone" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Phone Number</label>
                     <input 
+                      id="quote-phone"
                       type="tel" 
                       required
                       placeholder="+971 -- --- ----"
@@ -107,8 +111,9 @@ const GetQuote: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Service of Interest</label>
+                    <label htmlFor="quote-service" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Service of Interest</label>
                     <select 
+                      id="quote-service"
                       required
                       className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all appearance-none font-medium"
                       onChange={(e) => setFormData({...formData, service: e.target.value})}
@@ -122,8 +127,9 @@ const GetQuote: React.FC = () => {
                     </select>
                   </div>
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Preferred Contact Method</label>
+                    <label htmlFor="quote-contact-method" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Preferred Contact Method</label>
                     <select 
+                      id="quote-contact-method"
                       className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all appearance-none font-medium"
                       onChange={(e) => setFormData({...formData, contactMethod: e.target.value})}
                     >
@@ -135,8 +141,9 @@ const GetQuote: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Requirements Details</label>
+                  <label htmlFor="quote-message" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Requirements Details</label>
                   <textarea 
+                    id="quote-message"
                     rows={6}
                     placeholder="Briefly describe your requirements"
                     className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium resize-none"

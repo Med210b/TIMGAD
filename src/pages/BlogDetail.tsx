@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { BLOGS } from '../data/company';
@@ -6,6 +6,7 @@ import { Calendar, User, ArrowLeft, Share2, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const BlogDetail: React.FC = () => {
+  const [shareStatus, setShareStatus] = useState('');
   const { id } = useParams<{ id: string }>();
   // Match blog by id or path tail
   const blog = BLOGS.find(b => b.id === id || b.path.endsWith(id || ''));
@@ -13,6 +14,21 @@ const BlogDetail: React.FC = () => {
   if (!blog) {
     return <Navigate to="/blogs" />;
   }
+
+  const handleShare = async () => {
+    const shareData = { title: blog.title, text: blog.excerpt, url: window.location.href };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        setShareStatus('Shared');
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        setShareStatus('Link copied');
+      }
+    } catch {
+      setShareStatus('');
+    }
+  };
 
   return (
     <div className="bg-primary-bg pb-24">
@@ -54,7 +70,7 @@ const BlogDetail: React.FC = () => {
                 {blog.title}
               </h1>
 
-              <div className="flex items-center space-x-8 text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">
                 <span className="flex items-center">
                   <Calendar size={14} className="mr-2 text-gold" /> 
                   {blog.date}
@@ -136,17 +152,17 @@ const BlogDetail: React.FC = () => {
               {/* Social Share */}
               <div className="mt-16 pt-8 border-t border-black/5 flex items-center justify-between">
                 <div className="flex space-x-4">
-                  <button className="p-3 rounded-full bg-black/5 text-muted-text hover:bg-gold hover:text-primary-bg transition-all">
+                  <button type="button" aria-label="Share this article" onClick={handleShare} className="p-3 rounded-full bg-black/5 text-muted-text hover:bg-gold hover:text-primary-bg transition-all">
                     <Share2 size={18} />
                   </button>
 
-                  <button className="p-3 rounded-full bg-black/5 text-muted-text hover:bg-gold hover:text-primary-bg transition-all">
+                  <button type="button" aria-label="Open comments" className="p-3 rounded-full bg-black/5 text-muted-text hover:bg-gold hover:text-primary-bg transition-all">
                     <MessageCircle size={18} />
                   </button>
                 </div>
 
                 <div className="text-muted-text text-[10px] font-bold uppercase tracking-[0.2em]">
-                  Share this insight
+                  {shareStatus || 'Share this insight'}
                 </div>
               </div>
             </div>

@@ -120,6 +120,7 @@ const Footer: React.FC = () => {
             <Magnetic strength={0.2}>
               <button 
                 onClick={scrollToTop}
+                aria-label="Scroll to top"
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gold hover:bg-gold hover:text-black transition-all duration-500 group"
               >
                 <ArrowUp size={18} className="group-hover:-translate-y-1 transition-transform" />

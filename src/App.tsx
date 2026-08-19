@@ -16,6 +16,8 @@ import Blogs from './pages/Blogs';
 import BlogDetail from './pages/BlogDetail';
 import Contact from './pages/Contact';
 import GetQuote from './pages/GetQuote';
+import Legal from './pages/Legal';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
             <Route path="/blogs/:id" element={<BlogDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/get-a-quote" element={<GetQuote />} />
+            <Route path="/privacy-policy" element={<Legal type="privacy" />} />
+            <Route path="/terms" element={<Legal type="terms" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </SmoothScroll>

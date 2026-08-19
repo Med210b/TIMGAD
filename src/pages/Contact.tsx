@@ -44,7 +44,7 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-40 border-b border-black/5 bg-ivory">
+      <section className="py-40 border-b border-black/5 bg-ivory overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
             {/* Info */}
@@ -108,8 +108,9 @@ const Contact: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">First Name</label>
+                    <label htmlFor="contact-first-name" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">First Name</label>
                     <input 
+                      id="contact-first-name"
                       type="text" 
                       required
                       placeholder="Enter first name"
@@ -118,8 +119,9 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Last Name</label>
+                    <label htmlFor="contact-last-name" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Last Name</label>
                     <input 
+                      id="contact-last-name"
                       type="text" 
                       required
                       placeholder="Enter last name"
@@ -131,8 +133,9 @@ const Contact: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Email Address</label>
+                    <label htmlFor="contact-email" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Email Address</label>
                     <input 
+                      id="contact-email"
                       type="email" 
                       required
                       placeholder="email@example.com"
@@ -141,8 +144,9 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-4">
-                    <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Phone Number</label>
+                    <label htmlFor="contact-phone" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Phone Number</label>
                     <input 
+                      id="contact-phone"
                       type="tel" 
                       required
                       placeholder="+971 -- --- ----"
@@ -153,9 +157,10 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Service Required</label>
+                  <label htmlFor="contact-service" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Service Required</label>
                   <div className="relative">
                     <select 
+                      id="contact-service"
                       className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all appearance-none font-medium"
                       onChange={(e) => setFormData({...formData, service: e.target.value})}
                     >
@@ -172,8 +177,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <label className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Your Message</label>
+                  <label htmlFor="contact-message" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Your Message</label>
                   <textarea 
+                    id="contact-message"
                     rows={5}
                     placeholder="Tell us about your elite requirements"
                     className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium resize-none"
