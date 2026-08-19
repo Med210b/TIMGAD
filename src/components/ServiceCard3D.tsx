@@ -32,6 +32,8 @@ const ServiceCard3D: React.FC<ServiceCard3DProps> = ({ title, description, iconN
   // Transforms for light/glow position
   const lightX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
   const lightY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
+  const imageX = useTransform(mouseXSpring, [-0.5, 0.5], [-10, 10]);
+  const imageY = useTransform(mouseYSpring, [-0.5, 0.5], [-10, 10]);
 
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -100,8 +102,8 @@ const ServiceCard3D: React.FC<ServiceCard3DProps> = ({ title, description, iconN
               alt="" 
               className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-[2000ms]"
               style={{
-                x: isMobile ? 0 : useTransform(mouseXSpring, [-0.5, 0.5], [-10, 10]),
-                y: isMobile ? 0 : useTransform(mouseYSpring, [-0.5, 0.5], [-10, 10]),
+                x: isMobile ? 0 : imageX,
+                y: isMobile ? 0 : imageY,
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary-bg via-transparent to-transparent" />
