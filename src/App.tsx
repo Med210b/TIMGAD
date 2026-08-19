@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import SmoothScroll from './components/SmoothScroll';
 import Home from './pages/Home';
 import About from './pages/About';
+import CeoMessage from './pages/CeoMessage';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import Blogs from './pages/Blogs';
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/about/ceo" element={<CeoMessage />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<ServiceDetail />} />
             <Route path="/blogs" element={<Blogs />} />

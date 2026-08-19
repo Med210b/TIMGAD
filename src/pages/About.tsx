@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { COMPANY_INFO } from '../data/company';
 import { Shield, Target, Eye, Award, CheckCircle, Globe, Zap } from 'lucide-react';
@@ -63,6 +64,9 @@ const About: React.FC = () => {
               BUILT ON EXPERIENCE.<br />
               <span className="gold-gradient">DRIVEN BY PRECISION.</span>
             </h1>
+            <Link to="/about/ceo" className="inline-flex items-center border-b border-gold/60 pb-2 text-[10px] font-bold tracking-[0.28em] text-gold transition-colors hover:text-white">
+              FOUNDING CEO&apos;S MESSAGE
+            </Link>
           </motion.div>
         </div>
       </section>
