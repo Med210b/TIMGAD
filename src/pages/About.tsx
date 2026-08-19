@@ -142,7 +142,7 @@ const About: React.FC = () => {
             <div className="lg:col-span-4 space-y-6">
               <Reveal direction="up">
                 <p className="eyebrow">FOUNDATIONAL VALUES</p>
-                <h2 className="text-3xl font-bold text-[#F4F0E8] uppercase leading-tight tracking-tight">THE PILLARS OF OUR SUCCESS</h2>
+                <h2 className="text-3xl font-bold text-[#ffffff] uppercase leading-tight tracking-tight">THE PILLARS OF OUR SUCCESS</h2>
               </Reveal>
             </div>
 
