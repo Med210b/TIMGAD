@@ -44,11 +44,16 @@ const getSavedLanguage = (): SupportedLanguage => {
 };
 
 const setLanguageCookie = (language: SupportedLanguage) => {
+  const cookiePaths = ['/', '/TIMGAD/'];
   if (language === 'en') {
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    cookiePaths.forEach((path) => {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}`;
+    });
     return;
   }
-  document.cookie = `googtrans=/en/${language}; path=/; max-age=31536000; SameSite=Lax`;
+  cookiePaths.forEach((path) => {
+    document.cookie = `googtrans=/en/${language}; path=${path}; max-age=31536000; SameSite=Lax`;
+  });
 };
 
 const updateDocumentLanguage = (language: SupportedLanguage) => {
@@ -60,11 +65,12 @@ const updateDocumentLanguage = (language: SupportedLanguage) => {
 
 const applyGoogleLanguage = (language: SupportedLanguage, force = false) => {
   const select = document.querySelector<HTMLSelectElement>('.goog-te-combo');
-  if (!select) {
+  const googleValue = language === 'en' ? '' : language;
+  const optionExists = select && Array.from(select.options).some((option) => option.value === googleValue);
+  if (!select || !optionExists) {
     return false;
   }
 
-  const googleValue = language === 'en' ? '' : language;
   if (force || select.value !== googleValue) {
     select.value = googleValue;
     select.dispatchEvent(new Event('change'));
@@ -76,23 +82,8 @@ export const setSiteLanguage = (language: SupportedLanguage) => {
   window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   setLanguageCookie(language);
   updateDocumentLanguage(language);
-
-  if (language === 'en') {
-    window.location.reload();
-    return;
-  }
-
-  if (!applyGoogleLanguage(language)) {
-    let attempts = 0;
-    const retry = window.setInterval(() => {
-      attempts += 1;
-      if (applyGoogleLanguage(language) || attempts >= 30) {
-        window.clearInterval(retry);
-      }
-    }, 200);
-  }
-
   window.dispatchEvent(new CustomEvent('timgad-language-change', { detail: language }));
+  window.location.reload();
 };
 
 export const GoogleTranslateBridge: React.FC<{ pathname: string }> = ({ pathname }) => {
@@ -130,11 +121,7 @@ export const GoogleTranslateBridge: React.FC<{ pathname: string }> = ({ pathname
       initializeGoogleTranslate();
     }
 
-    return () => {
-      if (window.googleTranslateElementInit === initializeGoogleTranslate) {
-        delete window.googleTranslateElementInit;
-      }
-    };
+    return undefined;
   }, []);
 
   useEffect(() => {

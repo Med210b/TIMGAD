@@ -109,8 +109,10 @@
   /* Keep Google's translator functional while exposing only the TIMGAD control. */
   #google_translate_element {
     position: fixed;
-    width: 1px;
-    height: 1px;
+    left: -10000px;
+    top: 0;
+    width: 240px;
+    height: 40px;
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
@@ -131,10 +133,8 @@
   }
 
   .goog-te-gadget .goog-te-combo {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
+    width: 240px;
+    height: 36px;
     pointer-events: none;
   }
 
