@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
-import { ArrowRight, ShieldCheck, Zap, Users, Globe, Quote } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, Users, Globe, CalendarDays } from 'lucide-react';
 import HeroSlider from '../components/HeroSlider';
 import SEO from '../components/SEO';
 import { COMPANY_INFO, SERVICES, BLOGS, TESTIMONIALS } from '../data/company';
@@ -27,17 +27,6 @@ const Home: React.FC = () => {
     damping: 30
   });
 
-  const portraitRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: portraitScrollY } = useScroll({
-    target: portraitRef,
-    offset: ["start end", "end start"]
-  });
-
-  const portraitY = useSpring(useTransform(portraitScrollY, [0, 1], ["-5%", "5%"]), {
-    stiffness: 100,
-    damping: 30
-  });
-
   return (
     <div className="bg-primary-bg overflow-hidden">
       <SEO 
@@ -51,49 +40,65 @@ const Home: React.FC = () => {
       <FeatureCarousel />
 
       {/* Peter Drucker Leadership Section - Editorial Redesign */}
-      <section ref={portraitRef} className="section-py bg-ivory relative overflow-hidden flex items-center min-h-[500px]">
-        {/* Subtle Background Quote Graphic */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold/[0.02] pointer-events-none select-none">
-          <Quote size={500} strokeWidth={0.5} />
-        </div>
+      <section className="relative isolate min-h-[760px] overflow-hidden bg-[#060a0d] sm:min-h-[800px] lg:min-h-[820px] xl:min-h-[900px]">
+        <img
+          src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787159064/9025eb36-b810-4ce1-ab05-83f33faab87e_yfuj4p.png"
+          alt="Peter F. Drucker portrait in an editorial leadership composition"
+          className="absolute inset-0 h-full w-full object-cover object-[38%_center] lg:object-center"
+        />
 
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
-            {/* Portrait Column (4/12) */}
-            <div className="md:col-span-5 flex justify-center md:justify-end">
-              <motion.div 
-                style={{ y: portraitY }}
-                className="relative w-full max-w-[340px] aspect-[4/5] rounded-sm overflow-hidden shadow-2xl border border-black/5"
-              >
-                <img 
-                  src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787137865/34c5872f-f865-43ac-be92-47f888948393_kvfiyc.png" 
-                  alt="Peter F. Drucker" 
-                  className="w-full h-full object-cover grayscale brightness-105"
-                />
-              </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 flex min-h-[760px] items-end px-5 py-16 sm:min-h-[800px] sm:px-8 lg:min-h-[820px] lg:items-center lg:px-12 xl:min-h-[900px] xl:px-16"
+        >
+          <div className="ml-auto w-full max-w-[570px] text-[#f3efe7] [text-shadow:0_2px_16px_rgba(0,0,0,0.35)] lg:mr-[8%] xl:mr-[10%]">
+            <div className="mb-7">
+              <p className="text-[10px] font-bold tracking-[0.42em] text-[#d8b15a] sm:text-[11px]">LEADERSHIP PHILOSOPHY</p>
+              <div className="mt-4 h-px w-14 bg-gradient-to-r from-[#c89b3c] to-[#f4d98a] shadow-[0_0_10px_rgba(216,177,90,0.5)]" />
             </div>
-            
-            {/* Content Column (7/12) */}
-            <div className="md:col-span-7 space-y-8">
-              <Reveal direction="up" distance={20}>
-                <div className="space-y-6">
-                  <p className="eyebrow !text-dark-text/40">LEADERSHIP PHILOSOPHY</p>
-                  
-                  <h2 className="text-[clamp(1.5rem,3vw,2.25rem)] font-serif-heading italic text-dark-text leading-tight tracking-tight">
-                    "Management is doing things right; leadership is doing the <span className="text-gold italic">right things</span>."
-                  </h2>
 
-                  <div className="flex items-center space-x-4 pt-4">
-                    <div className="w-12 h-[1px] bg-gold/40" />
-                    <p className="text-dark-text/60 font-bold tracking-[0.2em] uppercase text-[10px] md:text-[11px]">
-                      — Peter F. Drucker
-                    </p>
-                  </div>
+            <blockquote className="relative">
+              <span aria-hidden="true" className="absolute -left-1 -top-12 font-serif-heading text-[110px] leading-none text-[#d8b15a] opacity-90 [text-shadow:0_4px_18px_rgba(200,155,60,0.35)] sm:-left-5 sm:text-[136px] lg:-left-10 lg:-top-16">&ldquo;</span>
+              <p className="relative font-serif-heading text-[clamp(2.35rem,4.15vw,4rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#f3efe7]">
+                Management is<br />
+                doing things right;<br />
+                leadership is doing<br />
+                <span className="text-[#d8b15a]">the right things.</span>
+              </p>
+            </blockquote>
+
+            <div className="mt-8 flex items-center gap-3">
+              <div className="h-px w-10 bg-[#c89b3c]" />
+              <p className="text-[10px] font-bold tracking-[0.28em] text-[#f3efe7] sm:text-[11px]">— PETER F. DRUCKER</p>
+            </div>
+
+            <div className="mt-7 border-y border-[#d8b15a]/40 py-5">
+              <p className="max-w-[490px] font-serif-body text-sm leading-7 text-[#f3efe7]/85 sm:text-[15px]">
+                Peter F. Drucker was an Austrian-American management consultant, educator, and author. He is widely regarded as the father of modern management. His ideas about leadership, innovation, and productivity continue to shape businesses and organizations around the world.
+              </p>
+            </div>
+
+            <div className="mt-6 grid max-w-[480px] grid-cols-2 gap-6 sm:gap-10">
+              <div className="flex gap-3">
+                <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#d8b15a]/80 text-[#d8b15a]"><CalendarDays size={13} strokeWidth={1.5} /></span>
+                <div>
+                  <p className="text-[9px] font-bold tracking-[0.3em] text-[#d8b15a]">BORN</p>
+                  <p className="mt-1 font-serif-body text-xs leading-5 text-[#f3efe7] sm:text-[13px]">November 19, 1909<br />Vienna, Austria</p>
                 </div>
-              </Reveal>
+              </div>
+              <div className="flex gap-3 border-l border-[#d8b15a]/35 pl-5 sm:pl-7">
+                <span aria-hidden="true" className="relative mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#d8b15a]/80 before:absolute before:h-3 before:w-px before:bg-[#d8b15a] after:absolute after:h-px after:w-3 after:bg-[#d8b15a]" />
+                <div>
+                  <p className="text-[9px] font-bold tracking-[0.3em] text-[#d8b15a]">DIED</p>
+                  <p className="mt-1 font-serif-body text-xs leading-5 text-[#f3efe7] sm:text-[13px]">November 11, 2005<br />Claremont, California, USA</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* About Us Section */}
