@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, Zap, Users, Shield, ArrowRight } from 'lucide-react';
+import { ArrowRight, CalendarDays, Check, Plus } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 import SEO from '../components/SEO';
+
+const backgroundImage = 'https://res.cloudinary.com/dfjezzfhc/image/upload/v1787216595/24ba91dc-5223-4008-9d2e-a61199d86918_cbhi9z.png';
+const personImage = 'https://res.cloudinary.com/dfjezzfhc/image/upload/v1787216763/29f525af-aadd-4d04-af1f-54530829d72e_bvhg2k.png';
+
+const fieldClass = 'quote-field';
+const labelClass = 'quote-label';
 
 const GetQuote: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -22,172 +28,99 @@ const GetQuote: React.FC = () => {
   };
 
   return (
-    <div className="bg-primary-bg pb-32">
+    <div className="quote-page bg-[#050708] text-[#F4F1E9]">
       <SEO 
         title="Get a Quote" 
         description="Request a custom solution for your UAE business requirements. Our experts provide tailored quotes for PRO, formation, and consultancy services."
       />
-      {/* Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden bg-black border-b border-gold-muted/20">
-        <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
+      <section className="quote-hero" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="quote-hero__veil" />
+        <div className="quote-hero__glow" />
+        <div className="quote-hero__inner">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-10"
+            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="quote-portrait-scene"
           >
-            <p className="eyebrow">REQUEST A SOLUTION</p>
-            <h1 className="h-hero">
-              GET A<br />
-              <span className="gold-gradient">CUSTOM QUOTE</span>
-            </h1>
-            <p className="p-main max-w-4xl mx-auto">
-              Tell us what you need and our expert team will analyze your requirements to find the right elite solution for your business in the UAE.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-40 border-b border-black/5 bg-ivory overflow-hidden">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="flex flex-col lg:flex-row gap-32 items-start">
-            {/* Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:w-2/3 glass-card p-10 md:p-20 border-black/5 shadow-2xl bg-white"
-            >
-              <form onSubmit={handleSubmit} className="space-y-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="space-y-4">
-                    <label htmlFor="quote-full-name" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Full Name</label>
-                    <input 
-                      id="quote-full-name"
-                      type="text" 
-                      required
-                      placeholder="Enter your full name"
-                      className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium"
-                      onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                    />
-                  </div>
-                  <div className="space-y-4">
-                    <label htmlFor="quote-company-name" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Company Name</label>
-                    <input 
-                      id="quote-company-name"
-                      type="text" 
-                      placeholder="Your company name (optional)"
-                      className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium"
-                      onChange={(e) => setFormData({...formData, companyName: e.target.value})}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="space-y-4">
-                    <label htmlFor="quote-email" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Email Address</label>
-                    <input 
-                      id="quote-email"
-                      type="email" 
-                      required
-                      placeholder="email@example.com"
-                      className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium"
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    />
-                  </div>
-                  <div className="space-y-4">
-                    <label htmlFor="quote-phone" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Phone Number</label>
-                    <input 
-                      id="quote-phone"
-                      type="tel" 
-                      required
-                      placeholder="+971 -- --- ----"
-                      className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium"
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="space-y-4">
-                    <label htmlFor="quote-service" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Service of Interest</label>
-                    <select 
-                      id="quote-service"
-                      required
-                      className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all appearance-none font-medium"
-                      onChange={(e) => setFormData({...formData, service: e.target.value})}
-                    >
-                      <option value="" className="bg-white">Select a service</option>
-                      <option value="pro" className="bg-white">PRO Services</option>
-                      <option value="formation" className="bg-white">Business Formation</option>
-                      <option value="accounting" className="bg-white">Accounting Solutions</option>
-                      <option value="consultancy" className="bg-white">Elite Consultancy</option>
-                      <option value="other" className="bg-white">Other Specialized Services</option>
-                    </select>
-                  </div>
-                  <div className="space-y-4">
-                    <label htmlFor="quote-contact-method" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Preferred Contact Method</label>
-                    <select 
-                      id="quote-contact-method"
-                      className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all appearance-none font-medium"
-                      onChange={(e) => setFormData({...formData, contactMethod: e.target.value})}
-                    >
-                      <option value="email" className="bg-white">Email</option>
-                      <option value="phone" className="bg-white">Phone Call</option>
-                      <option value="whatsapp" className="bg-white">WhatsApp</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <label htmlFor="quote-message" className="text-gold font-black tracking-[0.3em] text-[10px] uppercase">Requirements Details</label>
-                  <textarea 
-                    id="quote-message"
-                    rows={6}
-                    placeholder="Briefly describe your requirements"
-                    className="w-full bg-black/5 border-2 border-black/5 rounded-xl px-6 py-5 text-dark-text focus:border-gold focus:outline-none transition-all placeholder:text-gray-400 font-medium resize-none"
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  />
-                </div>
-
-                <button type="submit" className="btn-gold w-full flex items-center justify-center py-6 text-sm tracking-[0.4em] font-black uppercase">
-                  SUBMIT REQUEST <ArrowRight size={20} className="ml-4" />
-                </button>
-              </form>
-            </motion.div>
-
-            {/* Side Info */}
-            <div className="lg:w-1/3 space-y-12">
-              <div className="glass-card p-12 bg-beige border-black/5 shadow-xl space-y-12">
-                <h3 className="text-xl md:text-2xl font-black text-dark-text uppercase">Why TIMGAD?</h3>
-                <div className="space-y-12">
-                  {[
-                    { icon: <ShieldCheck className="text-gold" size={28} />, title: "17+ YEARS EXPERIENCE", desc: "Proven track record in the UAE market since 2008." },
-                    { icon: <Zap className="text-gold" size={28} />, title: "ELITE PROCESSING", desc: "Minimizing delays with hyper-efficient execution." },
-                    { icon: <Shield className="text-gold" size={28} />, title: "CONFIDENTIAL SUPPORT", desc: "Your business data is protected by the highest standards." },
-                    { icon: <Users className="text-gold" size={28} />, title: "GOVERNMENT EXPERTISE", desc: "Direct connection with all major UAE authorities." }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start space-x-6">
-                      <div className="shrink-0 mt-1">{item.icon}</div>
-                      <div>
-                        <h4 className="eyebrow text-[11px] mb-3">{item.title}</h4>
-                        <p className="text-muted-text text-xs leading-relaxed font-light">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="glass-card p-12 bg-primary-bg border-gold shadow-[0_0_50px_rgba(201,154,50,0.1)] text-center space-y-6">
-                <p className="eyebrow text-[10px] opacity-80">Need immediate help?</p>
-                <a href={`tel:${COMPANY_INFO.phone}`} className="text-gold-bright text-2xl font-black block hover:scale-110 transition-transform duration-500 tracking-tighter">
-                  {COMPANY_INFO.phone}
-                </a>
-                <p className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-black">Available Monday - Friday, 9am - 6pm</p>
+            <div className="quote-portrait-frame">
+              <div className="quote-portrait-frame__inner">
+                <img src={personImage} alt="TIMGAD Government Transaction Services executive consultant" loading="eager" />
               </div>
             </div>
-          </div>
+          </motion.div>
+
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="quote-editorial"
+          >
+            <div className="quote-eyebrow">LEADERSHIP PHILOSOPHY</div>
+            <div className="quote-gold-rule" />
+            <blockquote className="quote-main">
+              <span className="quote-mark" aria-hidden="true">&ldquo;</span>
+              <span>Management is<br />doing things right;<br />leadership is doing<br /><em>the right things.</em></span>
+            </blockquote>
+            <div className="quote-author"><span /> PETER F. DRUCKER</div>
+            <div className="quote-divider"><i /></div>
+            <p className="quote-biography">
+              Peter F. Drucker was an Austrian-American management consultant, educator, and author. He is widely regarded as the father of modern management. His ideas about leadership, innovation, and productivity continue to shape businesses and organizations around the world.
+            </p>
+            <div className="quote-dates">
+              <div className="quote-date-block">
+                <span className="quote-icon"><CalendarDays size={15} /></span>
+                <div><b>BORN</b><strong>November 19, 1909</strong><small>Vienna, Austria</small></div>
+              </div>
+              <div className="quote-date-block quote-date-block--died">
+                <span className="quote-icon"><Plus size={17} /></span>
+                <div><b>DIED</b><strong>November 11, 2005</strong><small>Claremont, California, USA</small></div>
+              </div>
+            </div>
+          </motion.article>
+        </div>
+        <div className="quote-bottom-line"><i /></div>
+      </section>
+
+      <section className="quote-request">
+        <div className="quote-request__inner">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="quote-request__intro"
+          >
+            <div className="quote-eyebrow">REQUEST A SOLUTION</div>
+            <h1>GET A <em>CUSTOM QUOTE</em></h1>
+            <p>Tell us what you need and our expert team will analyze your requirements to find the right solution for your business in the UAE.</p>
+            <div className="quote-trust-list">
+              <span><Check size={14} /> Confidential consultation</span>
+              <span><Check size={14} /> UAE transaction expertise</span>
+              <span><Check size={14} /> Clear next steps</span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="quote-form-panel"
+          >
+            <form onSubmit={handleSubmit} className="quote-form">
+              <div className="quote-form-grid">
+                <div><label htmlFor="quote-full-name" className={labelClass}>Full Name</label><input id="quote-full-name" className={fieldClass} type="text" required placeholder="Your full name" onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} /></div>
+                <div><label htmlFor="quote-company-name" className={labelClass}>Company Name</label><input id="quote-company-name" className={fieldClass} type="text" placeholder="Company name" onChange={(e) => setFormData({ ...formData, companyName: e.target.value })} /></div>
+                <div><label htmlFor="quote-email" className={labelClass}>Email Address</label><input id="quote-email" className={fieldClass} type="email" required placeholder="email@example.com" onChange={(e) => setFormData({ ...formData, email: e.target.value })} /></div>
+                <div><label htmlFor="quote-phone" className={labelClass}>Phone Number</label><input id="quote-phone" className={fieldClass} type="tel" required placeholder="+971 -- --- ----" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} /></div>
+                <div><label htmlFor="quote-service" className={labelClass}>Service of Interest</label><select id="quote-service" className={fieldClass} required defaultValue="" onChange={(e) => setFormData({ ...formData, service: e.target.value })}><option value="" disabled>Select a service</option><option value="pro">PRO Services</option><option value="formation">Business Formation</option><option value="accounting">Accounting Solutions</option><option value="consultancy">Elite Consultancy</option><option value="other">Other Specialized Services</option></select></div>
+                <div><label htmlFor="quote-contact-method" className={labelClass}>Preferred Contact</label><select id="quote-contact-method" className={fieldClass} defaultValue="email" onChange={(e) => setFormData({ ...formData, contactMethod: e.target.value })}><option value="email">Email</option><option value="phone">Phone Call</option><option value="whatsapp">WhatsApp</option></select></div>
+              </div>
+              <div><label htmlFor="quote-message" className={labelClass}>Requirements Details</label><textarea id="quote-message" className={`${fieldClass} quote-message`} rows={5} placeholder="Briefly describe your requirements" onChange={(e) => setFormData({ ...formData, message: e.target.value })} /></div>
+              <button type="submit" className="quote-submit">SUBMIT REQUEST <ArrowRight size={17} /></button>
+            </form>
+          </motion.div>
         </div>
       </section>
     </div>
