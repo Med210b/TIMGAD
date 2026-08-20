@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Globe,
-  ChevronRight,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-} from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Globe, ChevronRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { COMPANY_INFO } from '../data/company';
 import SEO from '../components/SEO';
@@ -32,12 +22,9 @@ const Contact: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [submittedName, setSubmittedName] = useState('');
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
 
@@ -66,43 +53,15 @@ const Contact: React.FC = () => {
     setIsSuccess(false);
     setErrorMessage('');
 
-    const firstName = formData.firstName.trim();
-    const lastName = formData.lastName.trim();
-    const fullName = `${firstName} ${lastName}`.trim();
-
     try {
-      /*
-       * IMPORTANT:
-       * These variable names match the EmailJS template:
-       *
-       * {{name}}
-       * {{email}}
-       * {{phone}}
-       * {{service}}
-       * {{message}}
-       * {{time}}
-       * {{title}}
-       */
-
       const templateParams = {
-        name: fullName,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         service: formData.service,
         message: formData.message.trim(),
-        time: new Date().toLocaleString('en-AE', {
-          timeZone: 'Asia/Dubai',
-          dateStyle: 'medium',
-          timeStyle: 'short',
-        }),
-        title: 'New Contact Request - TIMGAD Website',
       };
-
-      console.log('Sending EmailJS request:', {
-        serviceId: EMAILJS_SERVICE_ID,
-        templateId: EMAILJS_TEMPLATE_ID,
-        templateParams,
-      });
 
       await emailjs.send(
         EMAILJS_SERVICE_ID,
@@ -113,12 +72,6 @@ const Contact: React.FC = () => {
         }
       );
 
-      /*
-       * Save the name BEFORE clearing the form.
-       * This allows the success message to say:
-       * "Thank you, Mohamed!"
-       */
-      setSubmittedName(firstName || fullName || 'there');
       setIsSuccess(true);
 
       setFormData({
@@ -147,10 +100,7 @@ const Contact: React.FC = () => {
         description="Get in touch with TIMGAD's elite team for professional government transaction services and business consultancy in the UAE."
       />
 
-      {/* =========================================================
-          HERO
-          ========================================================= */}
-
+      {/* Hero */}
       <section className="relative py-24 md:py-32 overflow-hidden bg-black border-b border-gold-muted/20">
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <motion.div
@@ -170,18 +120,11 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* =========================================================
-          CONTACT SECTION
-          ========================================================= */}
-
       <section className="py-24 md:py-40 border-b border-black/5 bg-ivory overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
 
-            {/* =====================================================
-                CONTACT INFORMATION
-                ===================================================== */}
-
+            {/* Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -195,9 +138,9 @@ const Contact: React.FC = () => {
                 </h2>
 
                 <p className="text-muted-text text-[15px] md:text-base lg:text-[18px] leading-relaxed font-light">
-                  Have a question or need professional assistance? Our elite
-                  team is ready to provide you with the high-level guidance
-                  and support you need across all Emirates.
+                  Have a question or need professional assistance? Our elite team
+                  is ready to provide you with the high-level guidance and support
+                  you need across all Emirates.
                 </p>
               </div>
 
@@ -239,13 +182,6 @@ const Contact: React.FC = () => {
                         >
                           {item.val}
                         </a>
-                      ) : item.title === 'PHONE' ? (
-                        <a
-                          href={`tel:${item.val}`}
-                          className="block break-words text-base md:text-lg lg:text-xl font-black tracking-tight uppercase text-dark-text transition-colors hover:text-gold"
-                        >
-                          {item.val}
-                        </a>
                       ) : (
                         <p className="break-words text-base md:text-lg lg:text-xl font-black tracking-tight uppercase text-dark-text">
                           {item.val}
@@ -256,10 +192,7 @@ const Contact: React.FC = () => {
                 ))}
               </div>
 
-              {/* =================================================
-                  MAP VISUAL
-                  ================================================= */}
-
+              {/* Minimal Map Visual */}
               <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden border-2 border-gold/30 bg-primary-bg grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
                 <div className="absolute inset-0 bg-gold/5 animate-pulse" />
 
@@ -284,10 +217,7 @@ const Contact: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* =====================================================
-                CONTACT FORM
-                ===================================================== */}
-
+            {/* Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -300,10 +230,7 @@ const Contact: React.FC = () => {
                 className="space-y-7 md:space-y-10"
               >
 
-                {/* =================================================
-                    SUCCESS MESSAGE
-                    ================================================= */}
-
+                {/* Success Message */}
                 {isSuccess && (
                   <motion.div
                     initial={{ opacity: 0, y: -15 }}
@@ -318,23 +245,19 @@ const Contact: React.FC = () => {
 
                       <div>
                         <h3 className="text-dark-text font-black text-lg">
-                          Thank you, {submittedName}!
+                          Thank you, {formData.firstName || 'for contacting us'}!
                         </h3>
 
                         <p className="text-gray-600 text-sm leading-relaxed mt-2">
                           Your request has been received successfully.
-                          Our team will review your message and contact you
-                          shortly.
+                          Our team will review your message and contact you shortly.
                         </p>
                       </div>
                     </div>
                   </motion.div>
                 )}
 
-                {/* =================================================
-                    ERROR MESSAGE
-                    ================================================= */}
-
+                {/* Error Message */}
                 {errorMessage && (
                   <motion.div
                     initial={{ opacity: 0, y: -15 }}
@@ -360,10 +283,7 @@ const Contact: React.FC = () => {
                   </motion.div>
                 )}
 
-                {/* =================================================
-                    FIRST NAME + LAST NAME
-                    ================================================= */}
-
+                {/* Names */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10">
 
                   <div className="space-y-3 md:space-y-4">
@@ -410,10 +330,7 @@ const Contact: React.FC = () => {
 
                 </div>
 
-                {/* =================================================
-                    EMAIL + PHONE
-                    ================================================= */}
-
+                {/* Email + Phone */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10">
 
                   <div className="space-y-3 md:space-y-4">
@@ -461,10 +378,7 @@ const Contact: React.FC = () => {
 
                 </div>
 
-                {/* =================================================
-                    SERVICE
-                    ================================================= */}
-
+                {/* Service */}
                 <div className="space-y-3 md:space-y-4">
                   <label
                     htmlFor="contact-service"
@@ -490,24 +404,15 @@ const Contact: React.FC = () => {
                         PRO Services
                       </option>
 
-                      <option
-                        value="Business Formation"
-                        className="bg-white"
-                      >
+                      <option value="Business Formation" className="bg-white">
                         Business Formation
                       </option>
 
-                      <option
-                        value="Accounting Solutions"
-                        className="bg-white"
-                      >
+                      <option value="Accounting Solutions" className="bg-white">
                         Accounting Solutions
                       </option>
 
-                      <option
-                        value="Elite Consultancy"
-                        className="bg-white"
-                      >
+                      <option value="Elite Consultancy" className="bg-white">
                         Elite Consultancy
                       </option>
                     </select>
@@ -521,10 +426,7 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                {/* =================================================
-                    MESSAGE
-                    ================================================= */}
-
+                {/* Message */}
                 <div className="space-y-3 md:space-y-4">
                   <label
                     htmlFor="contact-message"
@@ -544,10 +446,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
 
-                {/* =================================================
-                    SUBMIT
-                    ================================================= */}
-
+                {/* Submit */}
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   type="submit"

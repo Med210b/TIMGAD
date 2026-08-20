@@ -41,7 +41,9 @@ const GetQuote: React.FC = () => {
       <div className="quote-page">
         <section
           className="quote-hero"
+          aria-hidden="true"
           style={{
+            display: 'none',
             backgroundImage: `url(${backgroundImage})`,
           }}
         >
