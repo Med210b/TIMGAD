@@ -1,13 +1,24 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
+
+const githubPagesFallback = () => ({
+  name: 'github-pages-fallback',
+  closeBundle() {
+    fs.copyFileSync(
+      path.resolve(__dirname, 'dist/index.html'),
+      path.resolve(__dirname, 'dist/404.html')
+    );
+  },
+});
 
 export default defineConfig(() => {
   return {
     base: '/TIMGAD/',
 
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), githubPagesFallback()],
 
     resolve: {
       alias: {

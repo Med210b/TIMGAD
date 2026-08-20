@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
               © {new Date().getFullYear()} TIMGAD Government Transaction Services
             </p>
             <div className="flex gap-8">
-              <Link to="/privacy-policy" className="text-gray-600 hover:text-gold transition-colors text-[10px] font-bold tracking-[0.1em] uppercase">Privacy</Link>
+              <Link to="/privacy" className="text-gray-600 hover:text-gold transition-colors text-[10px] font-bold tracking-[0.1em] uppercase">Privacy</Link>
               <Link to="/terms" className="text-gray-600 hover:text-gold transition-colors text-[10px] font-bold tracking-[0.1em] uppercase">Terms</Link>
             </div>
           </div>

@@ -34,6 +34,7 @@ function App() {
             <Route path="/blogs/:id" element={<BlogDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/get-a-quote" element={<GetQuote />} />
+            <Route path="/privacy" element={<Legal type="privacy" />} />
             <Route path="/privacy-policy" element={<Legal type="privacy" />} />
             <Route path="/terms" element={<Legal type="terms" />} />
             <Route path="*" element={<NotFound />} />

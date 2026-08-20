@@ -17,8 +17,8 @@ const SEO: React.FC<SEOProps> = ({
   image, 
   url 
 }) => {
-  const siteTitle = title 
-    ? `${title} | ${COMPANY_INFO.name}` 
+  const siteTitle = title
+    ? title.includes('|') ? title : `${title} | ${COMPANY_INFO.name}`
     : `${COMPANY_INFO.name} | Government Transaction Services UAE`;
     
   const metaDescription = description || "TIMGAD Government Transaction Services redefined. Trusted PRO services, company formation, and elite business consultancy in Dubai and across the UAE.";
