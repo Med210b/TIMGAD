@@ -14,10 +14,10 @@ const CeoMessage: React.FC = () => {
         <img
           src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787161806/24ecff8d-efa8-4768-8d64-2665d62060a5_sk3u7e.png"
           alt="Meriem Berkani, Founder and CEO of TIMGAD"
-          className="absolute inset-x-0 bottom-0 h-auto w-full object-contain object-bottom md:inset-0 md:h-full md:object-cover md:object-center"
+          className="absolute inset-0 hidden h-full w-full object-cover object-center md:block"
         />
 
-        <div className="relative z-10 mx-auto flex max-w-[1536px] items-start px-5 pb-12 pt-12 sm:px-8 md:min-h-[calc(100vh-110px)] md:items-center md:px-12 md:py-16 lg:px-16 xl:px-20">
+        <div className="relative z-10 mx-auto flex max-w-[1536px] items-start px-5 pb-10 pt-10 sm:px-8 md:min-h-[calc(100vh-110px)] md:items-center md:px-12 md:py-16 lg:px-16 xl:px-20">
           <motion.article
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const CeoMessage: React.FC = () => {
 
             <div className="my-6 h-px w-full max-w-[580px] bg-gradient-to-r from-[#a87824] via-[#d8b15a] to-transparent shadow-[120px_0_18px_rgba(216,177,90,0.18)]" />
 
-            <div className="max-w-[590px] space-y-4 break-words font-sans text-[15px] leading-[1.7] sm:text-base">
+            <div className="max-w-[590px] space-y-4 break-words font-sans text-[14px] leading-[1.65] sm:text-base sm:leading-[1.7]">
               <p className="text-[clamp(1.05rem,1.45vw,1.3rem)] font-semibold leading-[1.55] tracking-[-0.015em] text-[#111820]">
                 “At TIMGAD, we are not just offering services – we are simplifying the lives of entrepreneurs, investors, and professionals who make the UAE their base of success.”
               </p>
@@ -64,6 +64,12 @@ const CeoMessage: React.FC = () => {
             </div>
           </motion.article>
         </div>
+
+        <img
+          src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787161806/24ecff8d-efa8-4768-8d64-2665d62060a5_sk3u7e.png"
+          alt="Meriem Berkani, Founder and CEO of TIMGAD"
+          className="relative z-10 mx-auto block h-auto max-h-[390px] w-full object-contain object-bottom md:hidden"
+        />
       </section>
     </div>
   );
