@@ -74,11 +74,7 @@
     />
 
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="./favicon.png"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!--
       Google Translate callback.
@@ -86,6 +82,10 @@
     -->
     <script>
       window.googleTranslateElementInit = function () {
+        if (window.__timgadGoogleTranslateInitialized) {
+          return;
+        }
+
         if (
           window.google &&
           window.google.translate &&
@@ -102,6 +102,7 @@
           );
 
           window.__timgadGoogleTranslateReady = true;
+          window.__timgadGoogleTranslateInitialized = true;
 
           window.dispatchEvent(
             new Event('timgad-google-translate-ready')
@@ -116,8 +117,8 @@
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
       defer
     ></script>
-    <script type="module" crossorigin src="./assets/index-BJhVaoEV.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CJ1uA26h.css">
+    <script type="module" crossorigin src="/assets/index-BqdoUFKH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DEhq6MZz.css">
   </head>
 
   <body>
