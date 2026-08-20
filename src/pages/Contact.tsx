@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, Globe, ChevronRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Globe,
+  ChevronRight,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+} from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { COMPANY_INFO } from '../data/company';
 import SEO from '../components/SEO';
 
 const EMAILJS_SERVICE_ID = 'service_6rngir4';
 const EMAILJS_TEMPLATE_ID = 'template_uuei5x2';
-const EMAILJS_PUBLIC_KEY = 'YUuoK7doYvXYRI6AX';
+const EMAILJS_PUBLIC_KEY = 'XmWXpAqv08Wdberqv';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +32,12 @@ const Contact: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [submittedName, setSubmittedName] = useState('');
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
 
@@ -53,15 +66,47 @@ const Contact: React.FC = () => {
     setIsSuccess(false);
     setErrorMessage('');
 
+    const firstName = formData.firstName.trim();
+    const lastName = formData.lastName.trim();
+    const fullName = `${firstName} ${lastName}`.trim();
+
     try {
+      /*
+       * These variables match the EmailJS template:
+       *
+       * {{name}}
+       * {{email}}
+       * {{phone}}
+       * {{service}}
+       * {{message}}
+       * {{time}}
+       * {{title}}
+       *
+       * We also send firstName and lastName in case they are
+       * useful in the EmailJS template later.
+       */
+
       const templateParams = {
-        firstName: formData.firstName.trim(),
-        lastName: formData.lastName.trim(),
+        name: fullName,
+        firstName,
+        lastName,
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         service: formData.service,
         message: formData.message.trim(),
+        time: new Date().toLocaleString('en-AE', {
+          timeZone: 'Asia/Dubai',
+          dateStyle: 'medium',
+          timeStyle: 'short',
+        }),
+        title: 'New Contact Request - TIMGAD Website',
       };
+
+      console.log('Sending EmailJS request:', {
+        serviceId: EMAILJS_SERVICE_ID,
+        templateId: EMAILJS_TEMPLATE_ID,
+        templateParams,
+      });
 
       await emailjs.send(
         EMAILJS_SERVICE_ID,
@@ -72,6 +117,10 @@ const Contact: React.FC = () => {
         }
       );
 
+      /*
+       * Save the name BEFORE clearing the form.
+       */
+      setSubmittedName(firstName || fullName || 'there');
       setIsSuccess(true);
 
       setFormData({
@@ -100,7 +149,9 @@ const Contact: React.FC = () => {
         description="Get in touch with TIMGAD's elite team for professional government transaction services and business consultancy in the UAE."
       />
 
-      {/* Hero */}
+      {/* =========================================================
+          HERO
+          ========================================================= */}
       <section className="relative py-24 md:py-32 overflow-hidden bg-black border-b border-gold-muted/20">
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <motion.div
@@ -120,11 +171,16 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
+      {/* =========================================================
+          CONTACT CONTENT
+          ========================================================= */}
       <section className="py-24 md:py-40 border-b border-black/5 bg-ivory overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
 
-            {/* Info */}
+            {/* =====================================================
+                CONTACT INFORMATION
+                ===================================================== */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -182,6 +238,13 @@ const Contact: React.FC = () => {
                         >
                           {item.val}
                         </a>
+                      ) : item.title === 'PHONE' ? (
+                        <a
+                          href={`tel:${item.val.replace(/\s/g, '')}`}
+                          className="block break-words text-base md:text-lg lg:text-xl font-black tracking-tight uppercase text-dark-text transition-colors hover:text-gold"
+                        >
+                          {item.val}
+                        </a>
                       ) : (
                         <p className="break-words text-base md:text-lg lg:text-xl font-black tracking-tight uppercase text-dark-text">
                           {item.val}
@@ -217,7 +280,9 @@ const Contact: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Form */}
+            {/* =====================================================
+                CONTACT FORM
+                ===================================================== */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -228,9 +293,12 @@ const Contact: React.FC = () => {
               <form
                 onSubmit={handleSubmit}
                 className="space-y-7 md:space-y-10"
+                noValidate
               >
 
-                {/* Success Message */}
+                {/* =================================================
+                    SUCCESS MESSAGE
+                    ================================================= */}
                 {isSuccess && (
                   <motion.div
                     initial={{ opacity: 0, y: -15 }}
@@ -245,7 +313,7 @@ const Contact: React.FC = () => {
 
                       <div>
                         <h3 className="text-dark-text font-black text-lg">
-                          Thank you, {formData.firstName || 'for contacting us'}!
+                          Thank you, {submittedName}!
                         </h3>
 
                         <p className="text-gray-600 text-sm leading-relaxed mt-2">
@@ -257,7 +325,9 @@ const Contact: React.FC = () => {
                   </motion.div>
                 )}
 
-                {/* Error Message */}
+                {/* =================================================
+                    ERROR MESSAGE
+                    ================================================= */}
                 {errorMessage && (
                   <motion.div
                     initial={{ opacity: 0, y: -15 }}
@@ -283,7 +353,9 @@ const Contact: React.FC = () => {
                   </motion.div>
                 )}
 
-                {/* Names */}
+                {/* =================================================
+                    FIRST NAME + LAST NAME
+                    ================================================= */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10">
 
                   <div className="space-y-3 md:space-y-4">
@@ -330,7 +402,9 @@ const Contact: React.FC = () => {
 
                 </div>
 
-                {/* Email + Phone */}
+                {/* =================================================
+                    EMAIL + PHONE
+                    ================================================= */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10">
 
                   <div className="space-y-3 md:space-y-4">
@@ -378,7 +452,9 @@ const Contact: React.FC = () => {
 
                 </div>
 
-                {/* Service */}
+                {/* =================================================
+                    SERVICE
+                    ================================================= */}
                 <div className="space-y-3 md:space-y-4">
                   <label
                     htmlFor="contact-service"
@@ -426,7 +502,9 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Message */}
+                {/* =================================================
+                    MESSAGE
+                    ================================================= */}
                 <div className="space-y-3 md:space-y-4">
                   <label
                     htmlFor="contact-message"
@@ -446,7 +524,9 @@ const Contact: React.FC = () => {
                   />
                 </div>
 
-                {/* Submit */}
+                {/* =================================================
+                    SUBMIT
+                    ================================================= */}
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   type="submit"
