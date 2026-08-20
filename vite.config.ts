@@ -16,7 +16,8 @@ const githubPagesFallback = () => ({
 
 export default defineConfig(() => {
   return {
-    base: '/TIMGAD/',
+    // The production site is served from the custom domain root.
+    base: '/',
 
     plugins: [react(), tailwindcss(), githubPagesFallback()],
 

@@ -155,7 +155,7 @@ const Navbar: React.FC = () => {
                       to={item.path}
                       onClick={() => setIsOpen(false)}
                       className={cn(
-                        "text-3xl font-black uppercase tracking-widest flex justify-between items-center transition-colors duration-300",
+                        "text-[clamp(1.5rem,8vw,2.15rem)] font-black uppercase tracking-[0.12em] flex justify-between items-center gap-4 transition-colors duration-300",
                         location.pathname === item.path ? "text-gold" : "text-white hover:text-gold"
                       )}
                     >

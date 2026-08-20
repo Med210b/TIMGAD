@@ -26,6 +26,32 @@
     @apply bg-primary-bg text-white font-serif-body antialiased overflow-x-hidden selection:bg-gold selection:text-primary-bg text-[15px] md:text-base;
   }
 
+  *,
+  *::before,
+  *::after {
+    min-width: 0;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  button,
+  label,
+  span {
+    overflow-wrap: anywhere;
+  }
+
   .lenis.lenis-smooth {
     scroll-behavior: auto !important;
   }
@@ -146,6 +172,21 @@
   html[dir="rtl"] select,
   html[dir="rtl"] textarea {
     text-align: right;
+  }
+
+  html[dir="rtl"] .space-x-3 > :not(:last-child),
+  html[dir="rtl"] .space-x-4 > :not(:last-child),
+  html[dir="rtl"] .space-x-8 > :not(:last-child) {
+    margin-right: 0;
+    margin-left: 0.75rem;
+  }
+
+  html[dir="rtl"] .space-x-4 > :not(:last-child) {
+    margin-left: 1rem;
+  }
+
+  html[dir="rtl"] .space-x-8 > :not(:last-child) {
+    margin-left: 2rem;
   }
 
   /* Section Spacing System */
@@ -735,6 +776,49 @@
 
 /* Keep page titles compact enough to wrap cleanly on phone screens. */
 @media (max-width: 767px) {
+  .feature-carousel-track {
+    display: block;
+    white-space: normal;
+  }
+
+  .feature-carousel-set {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+    padding: 0 1rem;
+    transform: none !important;
+  }
+
+  .feature-carousel-set--duplicate {
+    display: none !important;
+  }
+
+  .feature-carousel-item {
+    width: 100%;
+    min-height: 3rem;
+    justify-content: flex-start;
+    gap: 0.9rem;
+    white-space: normal;
+  }
+
+  .feature-carousel-item > span {
+    max-width: none;
+    flex: 1 1 auto;
+    white-space: pre-line;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .btn-gold,
+  .btn-outline {
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
   h1 {
     font-size: clamp(1.85rem, 8vw, 2.5rem) !important;
     line-height: 1.08 !important;

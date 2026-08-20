@@ -8,7 +8,7 @@ export const COMPANY_INFO = {
   heroSubheading: 'From company setup to visa processing, TIMGAD streamlines every transaction across the UAE with accuracy, speed, and trust.',
   address: 'Dubai, United Arab Emirates',
   phone: '+971 46658944',
-  email: 'business@tim-gad.ae',
+  email: 'hello@tim-gad.ae',
   experience: '17+',
   logoUrl: 'https://res.cloudinary.com/dfjezzfhc/image/upload/v1787084172/NO_BACKGROUND_j3vehs.png'
 };

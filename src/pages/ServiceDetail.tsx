@@ -42,7 +42,7 @@ const ServiceDetail: React.FC = () => {
           >
             <div className="lg:col-span-7 space-y-8">
               <p className="text-gold font-bold tracking-[0.4em] uppercase text-xs">OUR SERVICES</p>
-              <h1 className="text-5xl md:text-7xl font-black leading-[1.1] uppercase">
+              <h1 className="break-words text-5xl md:text-7xl font-black leading-[1.1] uppercase">
                 {service.title.split(' ').map((word, i) => (
                   <span key={i} className={i === service.title.split(' ').length - 1 ? "text-gold" : ""}>
                     {word}{' '}

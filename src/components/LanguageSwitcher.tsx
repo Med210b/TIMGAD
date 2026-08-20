@@ -31,6 +31,7 @@ declare global {
     googleTranslateElementInit?: () => void;
 
     __timgadGoogleTranslateReady?: boolean;
+    __timgadGoogleTranslateInitialized?: boolean;
   }
 }
 
@@ -162,31 +163,15 @@ const updateDocumentDirection = (
 };
 
 const clearGoogleCookie = () => {
-  const paths = [
-    '/',
-    '/TIMGAD',
-    '/TIMGAD/',
-  ];
-
-  paths.forEach((path) => {
-    document.cookie =
-      `${GOOGLE_COOKIE}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}`;
-  });
+  document.cookie =
+    `${GOOGLE_COOKIE}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
 };
 
 const setGoogleCookie = (
   language: SupportedLanguage
 ) => {
-  const paths = [
-    '/',
-    '/TIMGAD',
-    '/TIMGAD/',
-  ];
-
-  paths.forEach((path) => {
-    document.cookie =
-      `${GOOGLE_COOKIE}=/en/${language}; path=${path}; max-age=31536000; SameSite=Lax`;
-  });
+  document.cookie =
+    `${GOOGLE_COOKIE}=/en/${language}; path=/; max-age=31536000; SameSite=Lax`;
 };
 
 const getGoogleSelect =
@@ -233,69 +218,26 @@ const changeGoogleLanguage =
   async (
     language: SupportedLanguage
   ) => {
-    if (language === 'en') {
-      clearGoogleCookie();
-
-      try {
-        localStorage.removeItem(
-          STORAGE_KEY
-        );
-      } catch {
-        // Ignore.
-      }
-
-      updateDocumentDirection(
-        'en'
-      );
-
-      window.location.reload();
-
-      return;
-    }
-
-    setStoredLanguage(
-      language
-    );
-
-    setGoogleCookie(
-      language
-    );
-
-    updateDocumentDirection(
-      language
-    );
-
     const select =
       await waitForGoogleSelect();
 
     if (!select) {
-      /*
-       * Google has not finished loading.
-       * The cookie is already set, so reload
-       * and let Google Translate read it.
-       */
-      window.location.reload();
-      return;
+      throw new Error('Google Translate is not ready');
     }
 
-    const value =
-      language;
+    const value = language === 'en' ? 'en' : language;
 
-    const option =
-      Array.from(
-        select.options
-      ).find(
-        (item) =>
-          item.value === value
-      );
+    let option = Array.from(select.options).find(
+      (item) => item.value === value
+    );
+
+    if (language === 'en' && !option) {
+      option = new Option('English', 'en');
+      select.add(option);
+    }
 
     if (!option) {
-      /*
-       * The Google widget exists but hasn't
-       * populated its language options yet.
-       */
-      window.location.reload();
-      return;
+      throw new Error(`Google Translate does not support ${language}`);
     }
 
     select.value =
@@ -309,6 +251,14 @@ const changeGoogleLanguage =
         }
       )
     );
+
+    setStoredLanguage(language);
+    if (language === 'en') {
+      clearGoogleCookie();
+    } else {
+      setGoogleCookie(language);
+    }
+    updateDocumentDirection(language);
   };
 
 export const GoogleTranslateBridge: React.FC<{
@@ -631,10 +581,6 @@ const LanguageSwitcher: React.FC<
         return;
       }
 
-      setLanguage(
-        nextLanguage
-      );
-
       setIsChanging(
         true
       );
@@ -643,6 +589,7 @@ const LanguageSwitcher: React.FC<
         await changeGoogleLanguage(
           nextLanguage
         );
+        setLanguage(nextLanguage);
       } finally {
         setIsChanging(
           false

@@ -55,12 +55,12 @@ const Blogs: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
                 </Link>
                 
-                <div className="flex items-center space-x-8 text-gold font-black text-[10px] uppercase tracking-[0.4em] mb-6 opacity-70">
-                  <span className="flex items-center"><Calendar size={14} className="mr-3" /> {blog.date}</span>
-                  <span className="flex items-center"><User size={14} className="mr-3" /> ADMIN</span>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-gold font-black text-[10px] uppercase tracking-[0.2em] mb-6 opacity-70">
+                  <span className="flex min-w-0 items-center"><Calendar size={14} className="mr-2 shrink-0" /> {blog.date}</span>
+                  <span className="flex items-center"><User size={14} className="mr-2 shrink-0" /> ADMIN</span>
                 </div>
                 
-                <h3 className="text-xl md:text-2xl font-black mb-8 group-hover:text-gold transition-colors duration-500 text-dark-text uppercase">
+                <h3 className="break-words text-xl md:text-2xl font-black mb-8 group-hover:text-gold transition-colors duration-500 text-dark-text uppercase">
                   {blog.title}
                 </h3>
                 

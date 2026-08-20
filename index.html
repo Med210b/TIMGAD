@@ -74,11 +74,7 @@
     />
 
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="/TIMGAD/favicon.png"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!--
       Google Translate callback.
@@ -86,6 +82,10 @@
     -->
     <script>
       window.googleTranslateElementInit = function () {
+        if (window.__timgadGoogleTranslateInitialized) {
+          return;
+        }
+
         if (
           window.google &&
           window.google.translate &&
@@ -102,6 +102,7 @@
           );
 
           window.__timgadGoogleTranslateReady = true;
+          window.__timgadGoogleTranslateInitialized = true;
 
           window.dispatchEvent(
             new Event('timgad-google-translate-ready')

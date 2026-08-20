@@ -101,17 +101,17 @@ const HeroSlider: React.FC = () => {
                 {SLIDES[current].eyebrow}
               </motion.p>
               
-              <h1 className="h-hero max-w-full text-[clamp(2rem,10vw,4rem)] leading-[1.08] text-white md:text-[clamp(2.5rem,6vw,4rem)]">
+              <h1 className="h-hero max-w-full break-words text-[clamp(2rem,10vw,4rem)] leading-[1.08] text-white md:text-[clamp(2.5rem,6vw,4rem)]">
                 {SLIDES[current].title.part1} <br />
                 <span className="gold-gradient">{SLIDES[current].title.highlight}</span> <br />
                 {SLIDES[current].title.part2}
               </h1>
               
-              <p className="p-main max-w-xl text-ivory/70 font-serif-body">
+              <p className="p-main max-w-xl break-words text-ivory/70 font-serif-body">
                 {SLIDES[current].description}
               </p>
               
-              <div className="flex pt-6">
+              <div className="flex max-w-full flex-wrap pt-6">
                 <Magnetic strength={0.15}>
                   <motion.div whileTap={{ scale: 0.95 }}>
                     <Link 
