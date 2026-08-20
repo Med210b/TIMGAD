@@ -48,7 +48,7 @@ const HeroSlider: React.FC = () => {
     <section 
       ref={containerRef} 
       onMouseMove={handleMouseMove}
-      className="relative w-full overflow-hidden bg-black flex items-center aspect-[3/4] sm:aspect-video md:aspect-auto md:h-[85vh] lg:h-[90vh] min-h-[500px] max-h-[1000px]"
+      className="relative w-full overflow-hidden bg-black flex items-center aspect-auto min-h-[min(100svh,680px)] md:aspect-auto md:h-[85vh] lg:h-[90vh] md:min-h-[500px] max-h-[1000px]"
     >
       {/* Background Videos with AnimatePresence for Cinematic Crossfade */}
       <div className="absolute inset-0 z-0">
@@ -79,7 +79,7 @@ const HeroSlider: React.FC = () => {
       </div>
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 md:px-8 relative z-10 pt-16">
+      <div className="container mx-auto px-4 pb-24 pt-28 md:px-8 md:pb-0 md:pt-16 relative z-10">
         <motion.div 
           style={{ x: contentX, y: contentY }}
           className="max-w-[750px]"
@@ -91,7 +91,7 @@ const HeroSlider: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
-              className="space-y-6 md:space-y-8"
+              className="space-y-5 md:space-y-8"
             >
               <motion.p 
                 initial={{ opacity: 0, letterSpacing: "1em" }}
@@ -101,13 +101,13 @@ const HeroSlider: React.FC = () => {
                 {SLIDES[current].eyebrow}
               </motion.p>
               
-              <h1 className="h-hero text-white">
+              <h1 className="h-hero max-w-full text-[clamp(2rem,10vw,4rem)] leading-[1.08] text-white md:text-[clamp(2.5rem,6vw,4rem)]">
                 {SLIDES[current].title.part1} <br />
                 <span className="gold-gradient">{SLIDES[current].title.highlight}</span> <br />
                 {SLIDES[current].title.part2}
               </h1>
               
-              <p className="p-main text-ivory/70 max-w-xl font-serif-body">
+              <p className="p-main max-w-xl text-ivory/70 font-serif-body">
                 {SLIDES[current].description}
               </p>
               
@@ -116,7 +116,7 @@ const HeroSlider: React.FC = () => {
                   <motion.div whileTap={{ scale: 0.95 }}>
                     <Link 
                       to={SLIDES[current].buttonPath} 
-                      className="btn-gold"
+                      className="btn-gold inline-flex max-w-full items-center justify-center text-center"
                     >
                       {SLIDES[current].buttonLabel} 
                     </Link>

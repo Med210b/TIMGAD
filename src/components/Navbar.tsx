@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-700 h-[70px] md:h-[80px] flex items-center",
+        "fixed top-0 left-0 w-full z-[100] transition-all duration-700 h-[70px] md:h-[80px] flex items-center",
         scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/5 h-[60px] md:h-[70px] shadow-2xl" : "bg-transparent"
       )}
     >
@@ -140,9 +140,9 @@ const Navbar: React.FC = () => {
             id="mobile-navigation"
             role="dialog"
             aria-label="Mobile navigation"
-            className="fixed inset-0 z-40 bg-black flex flex-col lg:hidden pt-24 px-6"
+            className="fixed inset-0 z-[110] min-h-[100dvh] overflow-y-auto overscroll-contain bg-[#0D0F10] px-6 pb-10 pt-24 lg:hidden"
           >
-            <div className="flex flex-col space-y-8 mt-10">
+            <div className="mt-10 flex flex-col space-y-7">
               {NAVIGATION.map((item, index) => (
                 <motion.div
                   key={item.path}
@@ -153,6 +153,7 @@ const Navbar: React.FC = () => {
                   <motion.div whileTap={{ scale: 0.95 }}>
                     <Link
                       to={item.path}
+                      onClick={() => setIsOpen(false)}
                       className={cn(
                         "text-3xl font-black uppercase tracking-widest flex justify-between items-center transition-colors duration-300",
                         location.pathname === item.path ? "text-gold" : "text-white hover:text-gold"
@@ -167,6 +168,7 @@ const Navbar: React.FC = () => {
                           <Link
                             key={child.path}
                             to={child.path}
+                            onClick={() => setIsOpen(false)}
                             className={cn(
                               "text-sm font-bold uppercase tracking-[0.16em] transition-colors",
                               location.pathname === child.path ? "text-gold" : "text-white/70 hover:text-gold"
@@ -196,7 +198,7 @@ const Navbar: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="pt-2"
               >
-                <Link to="/get-a-quote" className="btn-gold w-full text-center block py-5 text-sm font-black uppercase tracking-[0.2em] rounded-sm shadow-xl shadow-gold/10">
+                <Link to="/get-a-quote" onClick={() => setIsOpen(false)} className="btn-gold block w-full py-5 text-center text-sm font-black uppercase tracking-[0.2em] rounded-sm shadow-xl shadow-gold/10">
                   Get a Quote
                 </Link>
               </motion.div>

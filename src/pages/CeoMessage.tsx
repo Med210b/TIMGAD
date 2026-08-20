@@ -10,14 +10,14 @@ const CeoMessage: React.FC = () => {
         description="A message from Meriem Berkani, Founder and CEO of TIMGAD Government Transaction Services."
       />
 
-      <section className="relative min-h-[1260px] overflow-hidden bg-[#f3efe7] pt-[100px] md:min-h-screen md:pt-[110px] lg:pt-[120px]">
+      <section className="relative overflow-hidden bg-[#f3efe7] pt-[100px] md:min-h-screen md:pt-[110px] lg:pt-[120px]">
         <img
           src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787161806/24ecff8d-efa8-4768-8d64-2665d62060a5_sk3u7e.png"
           alt="Meriem Berkani, Founder and CEO of TIMGAD"
           className="absolute inset-x-0 bottom-0 h-auto w-full object-contain object-bottom md:inset-0 md:h-full md:object-cover md:object-center"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[1000px] max-w-[1536px] items-start px-5 pb-[310px] pt-12 sm:px-8 md:min-h-[calc(100vh-110px)] md:items-center md:px-12 md:py-16 lg:px-16 xl:px-20">
+        <div className="relative z-10 mx-auto flex max-w-[1536px] items-start px-5 pb-12 pt-12 sm:px-8 md:min-h-[calc(100vh-110px)] md:items-center md:px-12 md:py-16 lg:px-16 xl:px-20">
           <motion.article
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

@@ -35,9 +35,9 @@ const AboutUsNew: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-40 bg-white relative overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-hidden bg-white py-16 md:py-40">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 mb-24">
+        <div className="mb-16 flex flex-col items-center gap-12 lg:mb-24 lg:flex-row lg:gap-24">
           {/* Images Column */}
           <div className="w-full lg:w-1/2 relative">
             <Reveal direction="right" distance={50}>
@@ -64,7 +64,7 @@ const AboutUsNew: React.FC = () => {
                   <img 
                     src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787144872/ff822479-cbbc-4c92-8e3a-e19967e68217_h6qqn6.png" 
                     alt="Dubai Burj Khalifa" 
-                    className="w-full h-[500px] md:h-[650px] object-cover"
+                    className="h-[min(115vw,500px)] w-full object-cover md:h-[650px]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
@@ -88,7 +88,7 @@ const AboutUsNew: React.FC = () => {
           </div>
 
           {/* Content Column */}
-          <div className="w-full lg:w-1/2 space-y-8">
+          <div className="w-full space-y-7 lg:w-1/2 lg:space-y-8">
             <Reveal direction="up">
               <p className="text-gold font-black tracking-[0.3em] uppercase text-xs md:text-sm">
                 STREAMLINING BUSINESS WITH PRECISION AND CARE
@@ -96,7 +96,7 @@ const AboutUsNew: React.FC = () => {
             </Reveal>
             
             <Reveal direction="up" delay={0.3}>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0D1B2A] leading-[1.1] uppercase">
+              <h2 className="text-[clamp(2rem,9vw,3rem)] font-black leading-[1.1] text-[#0D1B2A] uppercase md:text-5xl lg:text-6xl">
                 Your Trusted UAE<br />
                 <span className="text-gold">Service Partner</span>
               </h2>
@@ -104,7 +104,7 @@ const AboutUsNew: React.FC = () => {
 
             <Reveal direction="up" delay={0.4}>
               <div className="space-y-6">
-                <p className="text-[#4A4A4A] text-[15px] md:text-base lg:text-[17px] leading-relaxed">
+                  <p className="text-[15px] leading-relaxed text-[#4A4A4A] md:text-base lg:text-[17px]">
                   At TIMGAD Government Transaction Services, we redefine the way individuals and businesses interact with government entities across the United Arab Emirates. With our head office strategically based in Dubai, TIMGAD stands as a trusted bridge between clients and government departments, delivering efficient, accurate, and compliant documentation and transaction solutions.
                 </p>
                 <p className="text-[#4A4A4A] text-[15px] md:text-base lg:text-[17px] leading-relaxed">

@@ -40,7 +40,7 @@ const Home: React.FC = () => {
       <FeatureCarousel />
 
       {/* Peter Drucker Leadership Section - Editorial Redesign */}
-      <section className="relative isolate min-h-[760px] overflow-hidden bg-[#060a0d] sm:min-h-[800px] lg:min-h-[820px] xl:min-h-[900px]">
+      <section className="relative isolate overflow-hidden bg-[#060a0d] lg:min-h-[820px] xl:min-h-[900px]">
         <img
           src="https://res.cloudinary.com/dfjezzfhc/image/upload/v1787159064/9025eb36-b810-4ce1-ab05-83f33faab87e_yfuj4p.png"
           alt="Peter F. Drucker portrait in an editorial leadership composition"
@@ -52,7 +52,7 @@ const Home: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 flex min-h-[760px] items-end px-5 py-16 sm:min-h-[800px] sm:px-8 lg:min-h-[820px] lg:items-center lg:px-12 xl:min-h-[900px] xl:px-16"
+          className="relative z-10 flex items-end px-5 py-16 sm:px-8 lg:min-h-[820px] lg:items-center lg:px-12 lg:py-16 xl:min-h-[900px] xl:px-16"
         >
           <div className="ml-auto w-full max-w-[570px] text-[#f3efe7] [text-shadow:0_2px_16px_rgba(0,0,0,0.35)] lg:mr-[8%] xl:mr-[10%]">
             <div className="mb-7">
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-6 grid max-w-[480px] grid-cols-2 gap-6 sm:gap-10">
+            <div className="mt-6 grid max-w-[480px] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10">
               <div className="flex gap-3">
                 <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#d8b15a]/80 text-[#d8b15a]"><CalendarDays size={13} strokeWidth={1.5} /></span>
                 <div>
