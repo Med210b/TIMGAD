@@ -504,6 +504,7 @@ const GetQuote: React.FC = () => {
           overflow-x: hidden;
           background: var(--quote-black);
           color: var(--quote-ivory);
+          overflow-y: visible;
         }
 
         /* =========================================================
@@ -592,7 +593,7 @@ const GetQuote: React.FC = () => {
           width: min(1480px, calc(100% - 100px));
           margin: 0 auto;
 
-          min-height: 760px;
+          min-height: auto;
 
           display: grid;
           grid-template-columns: minmax(420px, 0.92fr) minmax(520px, 1.08fr);
@@ -640,7 +641,7 @@ const GetQuote: React.FC = () => {
 
         .quote-portrait-area {
           position: relative;
-          min-height: 650px;
+          min-height: auto;
 
           display: flex;
           justify-content: center;
@@ -1531,187 +1532,182 @@ const GetQuote: React.FC = () => {
         @media (max-width: 820px) {
           .quote-hero {
             min-height: auto;
-
-            background-position:
-              58% center;
-
+            background-position: center;
             align-items: stretch;
           }
 
           .quote-hero__dark-overlay {
-            background:
-              linear-gradient(
-                180deg,
-                rgba(2, 6, 9, 0.91) 0%,
-                rgba(3, 7, 10, 0.76) 42%,
-                rgba(3, 7, 10, 0.93) 100%
-              );
+            background: linear-gradient(
+              180deg,
+              rgba(2, 6, 9, 0.95) 0%,
+              rgba(3, 7, 10, 0.88) 38%,
+              rgba(3, 7, 10, 0.96) 100%
+            );
           }
 
           .quote-hero__marble-overlay {
             width: 100%;
-            opacity: 0.35;
-
-            background:
-              radial-gradient(
-                ellipse at 80% 20%,
-                rgba(247, 237, 211, 0.42),
-                transparent 48%
-              );
+            opacity: 0.25;
+            background: radial-gradient(
+              ellipse at 50% 30%,
+              rgba(247, 237, 211, 0.35),
+              transparent 50%
+            );
           }
 
           .quote-decoration--left {
-            left: -180px;
-            top: 28%;
-            width: 400px;
-            height: 400px;
+            left: -250px;
+            top: 35%;
+            width: 350px;
+            height: 350px;
+            opacity: 0.5;
           }
 
           .quote-decoration--right {
-            right: -150px;
-            top: 7%;
-            width: 280px;
-            height: 280px;
+            right: -200px;
+            top: 5%;
+            width: 250px;
+            height: 250px;
+            opacity: 0.4;
           }
 
           .quote-hero__content {
             width: 100%;
-
             display: flex;
             flex-direction: column;
-
-            gap: 15px;
-
-            padding:
-              82px
-              22px
-              75px;
+            gap: 0;
+            padding: 60px 18px 50px;
+            min-height: auto;
           }
 
+          /* PORTRAIT — Mobile exclusive layout */
           .quote-portrait-area {
             width: 100%;
             min-height: auto;
-
             height: auto;
-
-            padding:
-              20px
-              0
-              15px;
+            padding: 0 0 35px 0;
+            order: -1; /* Puts it first */
           }
 
           .quote-portrait-card {
-            width: min(285px, 72vw);
-
+            width: clamp(220px, 75vw, 300px);
             aspect-ratio: 0.72;
-
-            transform:
-              rotateY(-4deg)
-              rotateZ(-1.5deg);
+            transform: rotateY(0deg) rotateZ(0deg);
           }
 
           .quote-portrait-card:hover {
-            transform:
-              rotateY(-2deg)
-              rotateZ(-1deg);
+            transform: rotateY(0deg) rotateZ(0deg) translateY(-4px);
           }
 
           .quote-portrait-arc--one {
-            width: 320px;
-            height: 320px;
+            width: 280px;
+            height: 280px;
+            opacity: 0.6;
           }
 
           .quote-portrait-arc--two {
-            width: 280px;
-            height: 410px;
+            width: 240px;
+            height: 360px;
+            opacity: 0.5;
           }
 
           .quote-portrait-glow {
-            width: 270px;
-            height: 400px;
+            width: 240px;
+            height: 360px;
+            opacity: 0.6;
           }
 
           .quote-background-mark {
-            left: 5%;
-            bottom: 0;
-
-            font-size: 125px;
+            left: -30px;
+            bottom: 5%;
+            font-size: 100px;
+            opacity: 0.08;
           }
 
+          /* EDITORIAL — Mobile exclusive layout */
           .quote-editorial {
             width: 100%;
-            max-width: none;
-
-            padding:
-              20px
-              2px
-              0;
+            max-width: 100%;
+            padding: 0;
+            order: 0;
           }
 
           .quote-eyebrow {
-            font-size: 10px;
-            letter-spacing: 0.25em;
+            font-size: clamp(11px, 2.5vw, 13px);
+            letter-spacing: 0.32em;
+            margin-bottom: 10px;
           }
 
           .quote-short-rule {
-            width: 48px;
-            margin-top: 16px;
-            margin-bottom: 25px;
+            width: 45px;
+            height: 2px;
+            margin-top: 12px;
+            margin-bottom: 22px;
           }
 
           .quote-main {
             padding-left: 0;
+            position: relative;
           }
 
           .quote-main__mark {
-            left: -5px;
-            top: -28px;
-
-            font-size: 72px;
-
-            opacity: 0.8;
+            position: absolute;
+            left: -18px;
+            top: -32px;
+            font-size: clamp(48px, 15vw, 65px);
+            opacity: 0.7;
           }
 
           .quote-main__text {
-            font-size:
-              clamp(
-                34px,
-                10vw,
-                48px
-              );
-
-            line-height: 1.02;
-
-            letter-spacing: -0.035em;
+            font-size: clamp(36px, 9vw, 48px);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            padding-top: 8px;
           }
 
           .quote-author {
-            margin-top: 23px;
+            margin-top: 20px;
+            font-size: clamp(11px, 2vw, 13px);
+            letter-spacing: 0.15em;
+            gap: 12px;
+          }
 
-            font-size: 11px;
-            letter-spacing: 0.13em;
+          .quote-author__line {
+            width: 25px;
+            height: 1px;
           }
 
           .quote-divider {
-            margin: 23px 0 19px;
+            margin: 20px 0 22px;
+            height: 1px;
+          }
+
+          .quote-divider span {
+            left: 15%;
           }
 
           .quote-biography {
-            font-size: 14px;
-            line-height: 1.65;
+            font-size: clamp(15px, 3.5vw, 17px);
+            line-height: 1.68;
+            letter-spacing: 0;
+            max-width: 100%;
           }
 
+          /* BORN/DIED — Mobile exclusive 2-column grid */
           .quote-dates {
             display: grid;
             grid-template-columns: 1fr 1fr;
-
-            gap: 12px;
-
-            margin-top: 24px;
+            gap: 18px;
+            margin-top: 28px;
+            padding-top: 0;
           }
 
           .quote-date-block {
-            gap: 9px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
           }
 
           .quote-date-separator {
@@ -1719,74 +1715,85 @@ const GetQuote: React.FC = () => {
           }
 
           .quote-icon {
-            width: 39px;
-            height: 39px;
+            width: 42px;
+            height: 42px;
+            flex: none;
           }
 
           .quote-icon svg {
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
+          }
+
+          .quote-date-content {
+            width: 100%;
+            min-width: 0;
           }
 
           .quote-date-content b {
-            font-size: 9px;
-            letter-spacing: 0.14em;
+            display: block;
+            margin-bottom: 5px;
+            font-size: clamp(10px, 2.5vw, 12px);
+            letter-spacing: 0.16em;
           }
 
           .quote-date-content strong {
-            font-size: 11px;
-            line-height: 1.35;
+            font-size: clamp(13px, 3vw, 15px);
+            line-height: 1.4;
           }
 
           .quote-date-content small {
-            font-size: 10px;
-            line-height: 1.35;
+            margin-top: 3px;
+            font-size: clamp(11px, 2.5vw, 13px);
+            line-height: 1.4;
           }
 
           .quote-bottom-line {
-            left: 22px;
-            right: 22px;
-            bottom: 14px;
+            left: 18px;
+            right: 18px;
+            bottom: 12px;
           }
 
           .quote-bottom-light {
-            bottom: 9px;
+            bottom: 7px;
           }
 
           /* Request section */
           .quote-request {
-            padding: 75px 0;
+            padding: 70px 0;
           }
 
           .quote-request__inner {
             width: calc(100% - 36px);
-
             display: flex;
             flex-direction: column;
-
-            gap: 42px;
+            gap: 40px;
           }
 
           .quote-request__intro h1 {
-            margin-top: 16px;
-
-            font-size: clamp(39px, 11vw, 52px);
+            margin-top: 14px;
+            font-size: clamp(36px, 10vw, 48px);
+            line-height: 1.02;
           }
 
           .quote-request__intro > p {
-            font-size: 15px;
-            line-height: 1.65;
+            font-size: clamp(14px, 3.2vw, 16px);
+            line-height: 1.68;
           }
 
           .quote-trust-list {
-            margin-top: 24px;
+            margin-top: 22px;
+            gap: 11px;
+          }
+
+          .quote-trust-list span {
+            font-size: 13px;
           }
 
           .quote-form-panel {
             width: 100%;
             box-sizing: border-box;
-
-            padding: 24px 18px;
+            padding: 22px 18px;
           }
 
           .quote-form-grid {
@@ -1799,76 +1806,123 @@ const GetQuote: React.FC = () => {
           }
 
           .quote-label {
-            font-size: 10px;
+            font-size: clamp(10px, 2.5vw, 11px);
           }
 
           .quote-field {
             min-height: 50px;
-
             font-size: 16px;
+            padding: 14px 14px;
           }
 
           .quote-message {
-            min-height: 125px;
+            min-height: 120px;
           }
 
           .quote-submit {
             min-height: 54px;
-
-            font-size: 11px;
+            font-size: clamp(10px, 2vw, 12px);
           }
         }
 
         /* =========================================================
-           SMALL PHONES
+           SMALL PHONES (320px - 430px)
            ========================================================= */
 
         @media (max-width: 430px) {
+          .quote-page {
+            overflow-x: hidden;
+          }
+
           .quote-hero__content {
-            padding-left: 17px;
-            padding-right: 17px;
+            padding: 55px 14px 45px;
+            gap: 0;
+          }
+
+          .quote-portrait-area {
+            padding: 0 0 30px 0;
           }
 
           .quote-portrait-card {
-            width: min(250px, 68vw);
+            width: clamp(200px, 68vw, 260px);
+          }
+
+          .quote-portrait-arc--one {
+            width: 240px;
+            height: 240px;
+          }
+
+          .quote-portrait-arc--two {
+            width: 210px;
+            height: 300px;
+          }
+
+          .quote-portrait-glow {
+            width: 210px;
+            height: 300px;
           }
 
           .quote-main__text {
-            font-size:
-              clamp(
-                31px,
-                9.5vw,
-                42px
-              );
+            font-size: clamp(32px, 8vw, 40px);
+            line-height: 1.08;
           }
 
           .quote-main__mark {
-            font-size: 62px;
+            left: -12px;
+            top: -28px;
+            font-size: clamp(42px, 12vw, 55px);
+          }
+
+          .quote-eyebrow {
+            font-size: 10px;
+            letter-spacing: 0.30em;
+          }
+
+          .quote-short-rule {
+            width: 40px;
+            margin-bottom: 18px;
+          }
+
+          .quote-author {
+            font-size: 10px;
+            gap: 10px;
           }
 
           .quote-biography {
-            font-size: 13px;
+            font-size: 14px;
+            line-height: 1.65;
           }
 
           .quote-dates {
-            gap: 7px;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 24px;
           }
 
           .quote-date-block {
-            gap: 7px;
+            gap: 10px;
           }
 
           .quote-icon {
-            width: 35px;
-            height: 35px;
+            width: 38px;
+            height: 38px;
           }
 
-          .quote-date-content strong {
+          .quote-icon svg {
+            width: 15px;
+            height: 15px;
+          }
+
+          .quote-date-content b {
             font-size: 10px;
           }
 
+          .quote-date-content strong {
+            font-size: 12px;
+          }
+
           .quote-date-content small {
-            font-size: 9px;
+            font-size: 10px;
           }
 
           .quote-request__inner {
@@ -1876,38 +1930,218 @@ const GetQuote: React.FC = () => {
           }
 
           .quote-form-panel {
-            padding: 21px 15px;
+            padding: 20px 14px;
+          }
+
+          .quote-form-grid {
+            gap: 16px;
           }
         }
 
         /* =========================================================
-           VERY SMALL DEVICES
+           VERY SMALL DEVICES (max-width: 360px)
            ========================================================= */
 
         @media (max-width: 360px) {
+          .quote-page {
+            overflow-x: hidden;
+          }
+
           .quote-hero__content {
-            padding-top: 70px;
+            padding: 50px 12px 40px;
+          }
+
+          .quote-portrait-area {
+            padding: 0 0 25px 0;
           }
 
           .quote-portrait-card {
+            width: clamp(190px, 60vw, 230px);
+          }
+
+          .quote-portrait-arc--one {
             width: 220px;
+            height: 220px;
+          }
+
+          .quote-portrait-arc--two {
+            width: 190px;
+            height: 270px;
+          }
+
+          .quote-portrait-glow {
+            width: 190px;
+            height: 270px;
+          }
+
+          .quote-background-mark {
+            font-size: 80px;
+            left: -35px;
           }
 
           .quote-main__text {
-            font-size: 29px;
+            font-size: clamp(28px, 7vw, 36px);
+            line-height: 1.1;
+          }
+
+          .quote-main__mark {
+            left: -10px;
+            top: -25px;
+            font-size: clamp(38px, 10vw, 48px);
+          }
+
+          .quote-eyebrow {
+            font-size: 9px;
+          }
+
+          .quote-short-rule {
+            width: 35px;
           }
 
           .quote-author {
             font-size: 9px;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+          }
+
+          .quote-author__line {
+            display: none;
+          }
+
+          .quote-biography {
+            font-size: 13px;
+            line-height: 1.6;
           }
 
           .quote-dates {
             grid-template-columns: 1fr;
             gap: 16px;
+            margin-top: 22px;
           }
 
           .quote-date-block {
-            justify-content: flex-start;
+            flex-direction: row;
+            text-align: left;
+            gap: 10px;
+          }
+
+          .quote-icon {
+            width: 35px;
+            height: 35px;
+            flex: 0 0 auto;
+          }
+
+          .quote-date-content {
+            text-align: left;
+          }
+
+          .quote-date-content b {
+            font-size: 9px;
+            margin-bottom: 3px;
+          }
+
+          .quote-date-content strong {
+            font-size: 11px;
+          }
+
+          .quote-date-content small {
+            font-size: 9px;
+          }
+
+          .quote-divider {
+            margin: 18px 0 18px;
+          }
+
+          .quote-bottom-line {
+            left: 12px;
+            right: 12px;
+            bottom: 10px;
+          }
+
+          .quote-request {
+            padding: 60px 0;
+          }
+
+          .quote-request__inner {
+            width: calc(100% - 24px);
+            gap: 35px;
+          }
+
+          .quote-request__intro h1 {
+            font-size: clamp(28px, 8vw, 36px);
+            margin-top: 10px;
+          }
+
+          .quote-request__intro > p {
+            font-size: 13px;
+            line-height: 1.6;
+          }
+
+          .quote-trust-list {
+            gap: 9px;
+          }
+
+          .quote-trust-list span {
+            font-size: 12px;
+          }
+
+          .quote-form-panel {
+            padding: 18px 12px;
+          }
+
+          .quote-label {
+            font-size: 9px;
+          }
+
+          .quote-field {
+            min-height: 48px;
+            padding: 12px 12px;
+            font-size: 16px;
+          }
+
+          .quote-message {
+            min-height: 110px;
+          }
+
+          .quote-submit {
+            min-height: 50px;
+            font-size: 10px;
+          }
+        }
+
+        /* =========================================================
+           MEDIUM PHONES (375px - 430px)
+           ========================================================= */
+
+        @media (min-width: 375px) and (max-width: 430px) {
+          .quote-hero__content {
+            padding: 58px 16px 48px;
+          }
+
+          .quote-portrait-card {
+            width: clamp(220px, 70vw, 280px);
+          }
+
+          .quote-main__text {
+            font-size: clamp(35px, 8.8vw, 44px);
+          }
+
+          .quote-biography {
+            font-size: 15px;
+            line-height: 1.68;
+          }
+
+          .quote-dates {
+            gap: 16px;
+          }
+
+          .quote-date-content strong {
+            font-size: 13px;
+          }
+
+          .quote-date-content small {
+            font-size: 11px;
           }
         }
 
@@ -1923,9 +2157,7 @@ const GetQuote: React.FC = () => {
           }
 
           .quote-portrait-card:hover {
-            transform:
-              rotateY(-4deg)
-              rotateZ(-1.5deg);
+            transform: rotateY(0deg) rotateZ(0deg) translateY(-4px);
           }
         }
       `}</style>
