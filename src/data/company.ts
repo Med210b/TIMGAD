@@ -162,6 +162,23 @@ export const SERVICES: Service[] = [
     icon: 'Landmark',
     path: '/services/sharjah-government-services',
     image: 'https://res.cloudinary.com/dfjezzfhc/image/upload/v1787091280/8_g7cup7.png'
+  },
+  {
+    id: 'abu-dhabi-government-services',
+    title: 'ABU DHABI GOVERNMENT SERVICES',
+    description: 'Seamless access to Abu Dhabi government services, licensing, permits and essential administrative procedures.',
+    longDescription: 'Your trusted partner for Abu Dhabi government procedures. We provide efficient support for government transactions, licensing requirements, administrative procedures, and related services across the Emirate of Abu Dhabi.',
+    features: [
+      'TAMM Government Transactions',
+      'Abu Dhabi Department of Economic Development Services',
+      'Abu Dhabi Municipality Services',
+      'Government Licensing & Approvals',
+      'Visa & Residency Coordination',
+      'Amendments & Renewals'
+    ],
+    icon: 'Landmark',
+    path: '/services/abu-dhabi-government-services',
+    image: 'https://res.cloudinary.com/dfjezzfhc/image/upload/v1787369262/c15abd2f-4259-4e48-b7d3-18abe60d90ee_rkzqdi.png'
   }
 ];
 

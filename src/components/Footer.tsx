@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowUp, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUp, ChevronRight, Instagram, Facebook } from 'lucide-react';
 import { COMPANY_INFO, NAVIGATION, SERVICES } from '../data/company';
 import SectionDivider from './SectionDivider';
 import Reveal from './Reveal';
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
         {/* Legal & Meta Footer */}
         <div className="pt-12 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
-            <p className="text-gray-600 text-[10px] font-bold tracking-[0.1em] uppercase">
+            <p className="text-gray-600 text-[10px] font-bold tracking-[0.1em] uppercase text-center md:text-left">
               © {new Date().getFullYear()} TIMGAD Government Transaction Services
             </p>
 
@@ -183,7 +183,35 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6">
+            {/* Social Icons */}
+            <div className="flex items-center gap-3">
+              <Magnetic strength={0.2}>
+                <a
+                  href="https://www.instagram.com/timgad_official?fbclid=IwY2xjawT7lFhwZG9mA2V4dG4DYWVtAjEwAGJyaWQRMW02Nkt2clhSTDllQXhUTlpzcnRjBmFwcF9pZA81MTQ3NzE1NjkyMjgwNjEAAR4lciqqg4Rgn7tYE3OYmA9UwnOufiipqCs0mwm4E-yWKk5IpVcsJ4rkZXMWgQ_aem_Zn5TppRgo4pD3B985sccuA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-gold hover:border-gold transition-all duration-500 group"
+                >
+                  <Instagram size={16} className="group-hover:scale-110 transition-transform" />
+                </a>
+              </Magnetic>
+
+              <Magnetic strength={0.2}>
+                <a
+                  href="https://www.facebook.com/people/Timgad-Government-Transactions-Services/61582577761985/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-gold hover:border-gold transition-all duration-500 group"
+                >
+                  <Facebook size={16} className="group-hover:scale-110 transition-transform" />
+                </a>
+              </Magnetic>
+            </div>
+
+            {/* Back to Top */}
             <Magnetic strength={0.2}>
               <button
                 onClick={scrollToTop}

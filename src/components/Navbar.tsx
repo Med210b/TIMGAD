@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -33,16 +34,19 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
+
     return () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
 
   return (
-    <nav 
+    <nav
       className={cn(
         "fixed top-0 left-0 w-full z-[100] transition-all duration-700 h-[70px] md:h-[80px] flex items-center",
-        scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/5 h-[60px] md:h-[70px] shadow-2xl" : "bg-transparent"
+        scrolled
+          ? "bg-black/60 backdrop-blur-xl border-b border-white/5 h-[60px] md:h-[70px] shadow-2xl"
+          : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between h-full">
@@ -50,9 +54,9 @@ const Navbar: React.FC = () => {
         <div className="flex-1 flex justify-start items-center">
           <motion.div whileTap={{ scale: 0.95 }}>
             <Link to="/" className="flex items-center group">
-              <img 
-                src={COMPANY_INFO.logoUrl} 
-                alt={COMPANY_INFO.name} 
+              <img
+                src={COMPANY_INFO.logoUrl}
+                alt={COMPANY_INFO.name}
                 className={cn(
                   "w-auto transition-all duration-700",
                   scrolled ? "h-10 md:h-12" : "h-14 md:h-16"
@@ -65,23 +69,44 @@ const Navbar: React.FC = () => {
         {/* Center Navigation */}
         <div className="hidden lg:flex flex-[2] justify-center items-center space-x-8">
           {NAVIGATION.map((item) => (
-            <div key={item.path} className={cn("relative group", item.children ? "flex items-center" : "")}>
+            <div
+              key={item.path}
+              className={cn(
+                "relative group",
+                item.children ? "flex items-center" : ""
+              )}
+            >
               <Link
                 to={item.path}
                 className={cn(
                   "nav-link transition-all duration-500",
-                  location.pathname === item.path || item.children?.some((child) => location.pathname === child.path) ? "text-gold" : ""
+                  location.pathname === item.path ||
+                    item.children?.some(
+                      (child) => location.pathname === child.path
+                    )
+                    ? "text-gold"
+                    : ""
                 )}
               >
                 {item.name}
-                <span className={cn(
-                  "absolute -bottom-1 left-0 h-[1px] bg-gold transition-all duration-500",
-                  location.pathname === item.path || item.children?.some((child) => location.pathname === child.path) ? "w-full" : "w-0 group-hover:w-full"
-                )} />
+
+                <span
+                  className={cn(
+                    "absolute -bottom-1 left-0 h-[1px] bg-gold transition-all duration-500",
+                    location.pathname === item.path ||
+                      item.children?.some(
+                        (child) => location.pathname === child.path
+                      )
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  )}
+                />
               </Link>
+
               {item.children && (
                 <>
                   <ChevronDown size={14} className="ml-1 text-gold/70" />
+
                   <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="border border-white/10 bg-black/95 p-2 shadow-2xl backdrop-blur-xl">
                       {item.children.map((child) => (
@@ -90,7 +115,9 @@ const Navbar: React.FC = () => {
                           to={child.path}
                           className={cn(
                             "block px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] transition-colors hover:bg-white/5 hover:text-gold",
-                            location.pathname === child.path ? "text-gold" : "text-white"
+                            location.pathname === child.path
+                              ? "text-gold"
+                              : "text-white"
                           )}
                         >
                           {child.name}
@@ -107,6 +134,7 @@ const Navbar: React.FC = () => {
         {/* Desktop CTA - Right aligned */}
         <div className="hidden lg:flex flex-1 justify-end items-center gap-4">
           <LanguageSwitcher />
+
           <Magnetic strength={0.2}>
             <motion.div whileTap={{ scale: 0.95 }}>
               <Link to="/get-a-quote" className="btn-gold !px-6 !py-3">
@@ -117,7 +145,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <motion.button 
+        <motion.button
           whileTap={{ scale: 0.9 }}
           className="lg:hidden text-gold p-2"
           onClick={() => setIsOpen(!isOpen)}
@@ -156,12 +184,15 @@ const Navbar: React.FC = () => {
                       onClick={() => setIsOpen(false)}
                       className={cn(
                         "text-[clamp(1.5rem,8vw,2.15rem)] font-black uppercase tracking-[0.12em] flex justify-between items-center gap-4 transition-colors duration-300",
-                        location.pathname === item.path ? "text-gold" : "text-white hover:text-gold"
+                        location.pathname === item.path
+                          ? "text-gold"
+                          : "text-white hover:text-gold"
                       )}
                     >
                       {item.name}
                       <div className="w-8 h-[1px] bg-gold/50" />
                     </Link>
+
                     {item.children && (
                       <div className="mt-4 ml-4 flex flex-col gap-3 border-l border-gold/30 pl-4">
                         {item.children.map((child) => (
@@ -171,7 +202,9 @@ const Navbar: React.FC = () => {
                             onClick={() => setIsOpen(false)}
                             className={cn(
                               "text-sm font-bold uppercase tracking-[0.16em] transition-colors",
-                              location.pathname === child.path ? "text-gold" : "text-white/70 hover:text-gold"
+                              location.pathname === child.path
+                                ? "text-gold"
+                                : "text-white/70 hover:text-gold"
                             )}
                           >
                             {child.name}
@@ -182,6 +215,7 @@ const Navbar: React.FC = () => {
                   </motion.div>
                 </motion.div>
               ))}
+
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -191,6 +225,7 @@ const Navbar: React.FC = () => {
               >
                 <LanguageSwitcher mobile />
               </motion.div>
+
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -198,16 +233,29 @@ const Navbar: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="pt-2"
               >
-                <Link to="/get-a-quote" onClick={() => setIsOpen(false)} className="btn-gold block w-full py-5 text-center text-sm font-black uppercase tracking-[0.2em] rounded-sm shadow-xl shadow-gold/10">
+                <Link
+                  to="/get-a-quote"
+                  onClick={() => setIsOpen(false)}
+                  className="btn-gold block w-full py-5 text-center text-sm font-black uppercase tracking-[0.2em] rounded-sm shadow-xl shadow-gold/10"
+                >
                   Get a Quote
                 </Link>
               </motion.div>
             </div>
-            
+
             <div className="mt-auto pb-12">
-              <p className="text-gray-500 text-sm mb-4 tracking-widest uppercase">Contact Us</p>
-              <p className="text-white font-medium">{COMPANY_INFO.phone}</p>
-              <p className="text-white font-medium">{COMPANY_INFO.email}</p>
+              <p className="text-gray-500 text-sm mb-4 tracking-widest uppercase">
+                Contact Us
+              </p>
+
+              {/* Updated phone number */}
+              <p className="text-white font-medium">
+                +971555788779
+              </p>
+
+              <p className="text-white font-medium">
+                {COMPANY_INFO.email}
+              </p>
             </div>
           </motion.div>
         )}
